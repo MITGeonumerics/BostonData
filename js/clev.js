@@ -107,7 +107,7 @@ function getCoords() {
 	document.getElementById('res').innerHTML = coords
 }
 
-curr_time = "09:20"
+curr_time = "09:20AM"
 curr_day = "SUN"
 
 var all_time_ranges = [] //all unique time ranges for free parking
@@ -116,7 +116,7 @@ for(i=0; i<data_array.length; i++) {
 	no_pay = data_array[i].properties.PARK_NO_PAY
 	//console.log(i)
 	if(no_pay != null) {
-		time_array = no_pay.split(",") //array of free parking ranges for this meter
+		time_array = no_pay.split(",").map(item => item.trim()) //array of free parking ranges for this meter
 		for(j=0; j<time_array.length; j++) {
 			if(!(all_time_ranges.includes(time_array[j]))) {
 				all_time_ranges.push(time_array[j])
@@ -126,7 +126,49 @@ for(i=0; i<data_array.length; i++) {
 		}
 	}
 }
+//example inputs
+var ex_range = "00:00AM-04:00PM MON-FRI"
+var ex_day = "TUE"
+var ex_time = "06:00AM"
 
+function in_range(day, time, range) {
+	var start_time = range.substring(0, 7)
+	var end_time = range.substring(8, 15)
+	var start_day = range.substring(16, 19)
+	var end_day = range.substring(20)
+	var start_num = start_time.substring(0,5)
+	var end_num = end_time.substring(0,5)
+	var time_num = time.substring(0, 5)
+	var in_time_range = false
+	var in_day_range = false
+	if(start_time.includes("AM")) {
+		if(end_time.includes("AM")) { //start time AM, end time AM
+			if(time.includes("AM") && time_num >= start_num && time_num <= end_num) {
+				in_time_range = true
+			}
+		}
+		else { //start time AM, end time PM
+			if(time.includes("AM") && time_num >= start_num) {
+				in_time_range = true
+			}
+			else if(time.includes("PM") && time_num <= end_num) {
+				in_time_range = true
+			}
+		}
+	}
+	else { //start time PM
+		if(time.includes("PM") && time_num >= start_num && time_num <= end_num) {
+			in_time_range = true
+		}
+	}
+	return in_time_range
+}
+console.log(in_range(ex_day, "24:00AM", "00:00AM-24:00AM SUN"))
+console.log(in_range(ex_day, "08:00AM", "00:00AM-08:00AM MON-SAT"))
+console.log(in_range(ex_day, "06:00AM", "07:00AM-08:00AM MON-SAT"))
+console.log(in_range(ex_day, "02:00PM", "00:00AM-04:00PM MON-SAT"))
+console.log(in_range(ex_day, "02:00PM", "00:00AM-08:00AM MON-SAT"))
+console.log(in_range(ex_day, "02:00PM", "00:00AM-08:00PM MON-SAT"))
 
 	//all meters free parking times on SUNDAY
 // 	meter.free = [{"SUN": 0}, {"MON": 0}, {"TUE": 0},{"WED": 0},{"THU": 0},{"FRI": 0}, {"SAT": 0}]
