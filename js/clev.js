@@ -110,10 +110,17 @@ function getCoords() {
 curr_time = "09:20AM"
 curr_day = "SUN"
 
+var ex_range = "00:00AM-04:00PM MON-FRI"
+var ex_day = "SUN"
+var ex_time = "09:00AM"
+
 var all_time_ranges = [] //all unique time ranges for free parking
+var free_meters = [] //list of meters free at given time
+
 for(i=0; i<data_array.length; i++) {
-	meter = data_array[i].properties
-	no_pay = data_array[i].properties.PARK_NO_PAY
+	var meter = data_array[i].properties
+	var no_pay = data_array[i].properties.PARK_NO_PAY
+	//var time_array = []
 	//console.log(i)
 	if(no_pay != null) {
 		time_array = no_pay.split(",").map(item => item.trim()) //array of free parking ranges for this meter
@@ -125,24 +132,41 @@ for(i=0; i<data_array.length; i++) {
 			}
 		}
 	}
+	//console.log(time_array)
+	var is_free_now = false
+	for(var j=0; j<time_array.length; j++) { //iterate through each time range
+		if(in_range(ex_day, ex_time, time_array[j])) {
+			var is_free_now = true
+		} 
+	}
+	if(is_free_now) {
+		free_meters.push(i)
+	}
 }
 //example inputs
-var ex_range = "00:00AM-04:00PM MON-FRI"
-var ex_day = "TUE"
-var ex_time = "06:00AM"
+
 
 function in_range(day, time, range) {
+	//console.log(time)
 	var start_time = range.substring(0, 7)
 	var end_time = range.substring(8, 15)
 	var start_day = range.substring(16, 19)
 	var end_day = range.substring(20)
+	var day_range = range.substring(16)
 	var start_num = start_time.substring(0,5)
 	var end_num = end_time.substring(0,5)
 	var time_num = time.substring(0, 5)
 	var in_time_range = false
 	var in_day_range = false
+
+	//check if in time range
 	if(start_time.includes("AM")) {
-		if(end_time.includes("AM")) { //start time AM, end time AM
+		if(end_time == "24:00AM") {
+			if(time_num >= start_num) {
+				in_time_range = true
+			}
+		}
+		else if(end_time.includes("AM")) { //start time AM, end time AM
 			if(time.includes("AM") && time_num >= start_num && time_num <= end_num) {
 				in_time_range = true
 			}
@@ -161,14 +185,45 @@ function in_range(day, time, range) {
 			in_time_range = true
 		}
 	}
-	return in_time_range
+
+	//check if in day range
+	if(end_day == "") { //only one day
+		if(start_day == day) {
+			in_day_range = true
+		}
+	}
+	else { //range of days
+		if(day_range == "SUN-FRI") {
+			if(day != "SAT") {
+				in_day_range = true
+			}
+		}
+		else if(day_range == "SUN-SAT") {
+			in_day_range = true
+		}
+		else if(day_range == "MON-FRI") {
+			if(day != "SAT" && day != "SUN") {
+				in_day_range = true
+			}
+		}
+		else if(day_range == "MON-SAT") {
+			if(day != "SUN") {
+				in_day_range = true
+			}
+		}
+	}
+
+	return in_day_range && in_time_range
 }
-console.log(in_range(ex_day, "24:00AM", "00:00AM-24:00AM SUN"))
-console.log(in_range(ex_day, "08:00AM", "00:00AM-08:00AM MON-SAT"))
-console.log(in_range(ex_day, "06:00AM", "07:00AM-08:00AM MON-SAT"))
-console.log(in_range(ex_day, "02:00PM", "00:00AM-04:00PM MON-SAT"))
-console.log(in_range(ex_day, "02:00PM", "00:00AM-08:00AM MON-SAT"))
-console.log(in_range(ex_day, "02:00PM", "00:00AM-08:00PM MON-SAT"))
+
+
+
+//console.log(in_range(ex_day, "24:00AM", "00:00AM-24:00AM SUN"))
+//console.log(in_range(ex_day, "08:00AM", "00:00AM-08:00AM MON-SAT"))
+//console.log(in_range(ex_day, "06:00AM", "07:00AM-08:00AM MON-SAT"))
+//console.log(in_range(ex_day, "02:00PM", "00:00AM-04:00PM MON-SAT"))
+//console.log(in_range(ex_day, "02:00PM", "00:00AM-08:00AM MON-SAT"))
+//console.log(in_range(ex_day, "02:00PM", "00:00AM-08:00PM MON"))
 
 	//all meters free parking times on SUNDAY
 // 	meter.free = [{"SUN": 0}, {"MON": 0}, {"TUE": 0},{"WED": 0},{"THU": 0},{"FRI": 0}, {"SAT": 0}]
