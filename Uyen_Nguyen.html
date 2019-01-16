@@ -1,0 +1,149 @@
+<html>
+  <head>
+    <style>
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 550px;  /* The height is 500 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+    </style>
+    <script src="Parking_Meters.js"></script>
+  </head>
+  <body>
+    <script src="js/Uyen_Nguyen.js"></script>
+    <!--The div element for the map -->
+    <div id="map"></div>
+    <script>
+// Initialize and add the map
+    var map;
+    var HOME; // a Marker
+    var center; // coordinates of HOME
+    var circle;
+    var markers = [];
+    var cluster;    //only set if markers.length > 10
+
+    var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+    var icons = {
+          parking: {
+            icon: iconBase + 'parking_lot_maps.png'
+          }  
+        };
+
+    function initMap() {
+        // The location of Boston,MA
+        var boston_MA = {lat: 42.3601, lng: -71.0589};
+        center = boston_MA;
+        // The map, centered at Uluru
+        map = new google.maps.Map(
+            document.getElementById('map'), {zoom: 13, center: boston_MA});
+        // The marker, positioned at Uluru
+        HOME = new google.maps.Marker({
+            position: center,
+            map: map
+        })
+        circle = {
+            path: google.maps.SymbolPath.CIRCLE,
+            fillColor: 'red',
+            fillOpacity: 1,
+            scale: 6,
+            strokeColor: 'white',
+            strokeWeight: 1
+        }
+        addMarkers(allCoordinates())
+    }
+    
+    /** Add a marker to map
+     * @param position given in {lat,lng}. 
+     * @return the plotted marker.Dunction also pushes marker to markers[]
+     */
+    function plotLatLng(position){
+        var marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            icon: circle
+        });
+        markers.push(marker);
+        return marker;
+    }
+
+    /**Add an array of markers to map
+     * @param array of coordinates, each element given in {lat,lng} format
+     * @return None. If array size >10, will set a cluster.
+     */
+    function addMarkers(coorList){
+        for(var i = 0; i < coorList.length; i++){
+            plotLatLng(coorList[i]);
+        }
+        setCluster(markers);
+    }
+    /**Find all markers on speficied STREET
+     * @param dataList
+     * @param streetName
+     * @return array of coordinates.
+     */
+    function MarkersBySt(dataList, streetName){
+        var index = dataList[0].indexOf(streetName);
+        var allLocations = dataList[1][index];
+        var size = dataList[2][index];
+        var coorList = [];
+        for(var i = 0; i<size;i++){
+            var lat = allLocations[i][0];
+            var lng = allLocations[i][1];
+            coorList.push({lat,lng});
+        }
+        return coorList;
+    }
+    
+    
+    /**
+     * Create a cluster if markers.size > 10
+     * @param an array of markers
+     * @return created markerCluster
+     */
+    function setCluster(markers_list){
+        if(markers_list.length > 10){
+            var markerCluster = new MarkerClusterer(
+            map, markers_list,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+            });
+            cluster = markerCluster;
+            return markerCluster;
+        }
+        return
+        
+    }
+
+
+    /** Clear all plotted markers except for home location
+     * @param None
+     * @return None
+     */ 
+    function resetMap(){
+        cluster.clearMarkers();  
+        setMapOnAll(null);
+        markers = [];
+        
+    }
+    /**Clear all plotted markers and plot new markers
+     * @param array of positions, each element given in {lat,lng} format
+     * @return None
+     */
+    function refreshMap(coorList){
+        resetMap();
+        addMarkers(coorList);
+    }
+    function setMapOnAll(option) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(option);
+        }
+    }
+    </script>
+    <!--Add the marker clustering library to your page. -->
+    <script src= "js/markerCluster.js">
+    </script>
+    <!-- Google Maps API Key-->
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRe4yAD1aIqDWkintmN31Cl3v4r684Vpc&callback=initMap">
+    </script>
+  </body>
+</html>
