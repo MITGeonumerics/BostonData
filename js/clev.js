@@ -141,7 +141,7 @@ function displayStreetCoords() {
 	var coords = Object.values(street_avg_lat_lon[street_index])[0]
 	console.log(coords)
 	document.getElementById('res').innerHTML = coords
-	coord_obj = {lat: coords[0], lon: coords[1]}
+	coord_obj = {lat: coords[0], lng: coords[1]}
 	console.log(coord_obj)
 	return coord_obj
 }
