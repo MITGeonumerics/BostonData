@@ -97,7 +97,8 @@ for(var i=0; i<street_names.length; i++) {
 var select = document.getElementById('select')
 select.appendChild(fragment)
 
-function getCoords() {
+//
+function getStreetCoords() {
 	var name = document.getElementById('select').value
 	console.log(name)
 	var street_index = street_names.indexOf(name)
@@ -110,38 +111,44 @@ function getCoords() {
 //curr_time = "09:20AM"
 //curr_day = "SUN"
 
-var ex_range = "00:00AM-04:00PM MON-FRI"
-var ex_day = "SUN"
-var ex_time = "09:00AM"
+//var ex_range = "00:00AM-04:00PM MON-FRI"
+//var ex_day = "MON"
+//var ex_time = "09:00AM"
+
 
 var all_time_ranges = [] //all unique time ranges for free parking
-var free_meters = [] //list of meters free at given time
 
-for(i=0; i<data_array.length; i++) {
-	var meter = data_array[i].properties
-	var no_pay = data_array[i].properties.PARK_NO_PAY
-	//var time_array = []
-	//console.log(i)
-	if(no_pay != null) {
-		time_array = no_pay.split(",").map(item => item.trim()) //array of free parking ranges for this meter
-		for(j=0; j<time_array.length; j++) {
-			if(!(all_time_ranges.includes(time_array[j]))) {
-				all_time_ranges.push(time_array[j])
-				//console.log(all_time_ranges)
-				//console.log(i)
+//returns list of meters free at given time and day
+function getFreeMeters(ex_day, ex_time) {
+	var free_meters = [] //list of meters free at given time
+
+	for(i=0; i<data_array.length; i++) {
+		var meter = data_array[i].properties
+		var no_pay = data_array[i].properties.PARK_NO_PAY
+		//var time_array = []
+		//console.log(i)
+		if(no_pay != null) {
+			time_array = no_pay.split(",").map(item => item.trim()) //array of free parking ranges for this meter
+			for(j=0; j<time_array.length; j++) {
+				if(!(all_time_ranges.includes(time_array[j]))) {
+					all_time_ranges.push(time_array[j])
+					//console.log(all_time_ranges)
+					//console.log(i)
+				}
 			}
 		}
+		//console.log(time_array)
+		var is_free_now = false
+		for(var j=0; j<time_array.length; j++) { //iterate through each time range
+			if(in_range(ex_day, ex_time, time_array[j])) {
+				var is_free_now = true
+			} 
+		}
+		if(is_free_now) {
+			free_meters.push(i)
+		}
 	}
-	//console.log(time_array)
-	var is_free_now = false
-	for(var j=0; j<time_array.length; j++) { //iterate through each time range
-		if(in_range(ex_day, ex_time, time_array[j])) {
-			var is_free_now = true
-		} 
-	}
-	if(is_free_now) {
-		free_meters.push(i)
-	}
+	return free_meters
 }
 //example inputs
 
