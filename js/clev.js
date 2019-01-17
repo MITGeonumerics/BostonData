@@ -102,7 +102,7 @@ selectedStreet.appendChild(street_frag)
 //create options for select time
 var time_list = ["00:00AM", "06:00AM", "09:00AM", "12:00PM", "01:00PM", "04:00PM", "08:00PM", "24:00AM"]
 var time_frag = document.createDocumentFragment();
-console.log(selectedTime)
+//console.log(selectedTime)
 for(var i=0; i<time_list.length; i++) {
 	var time_opt = time_list[i]
 	var time_el = document.createElement('option')
@@ -117,7 +117,7 @@ selectedTime.appendChild(time_frag)
 //create options for select day
 var day_list = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
 var day_frag = document.createDocumentFragment();
-console.log(selectedDay)
+//console.log(selectedDay)
 for(var i=0; i<day_list.length; i++) {
 	var day_opt = day_list[i]
 	var day_el = document.createElement('option')
@@ -132,12 +132,15 @@ selectedDay.appendChild(day_frag)
 //displays [lat, lon] array of avg coordinates when street is selected
 function displayStreetCoords() {
 	var name = document.getElementById('selectStreet').value
-	console.log(name)
+	//console.log(name)
 	var street_index = street_names.indexOf(name)
 	console.log(street_index)
-	var coords = Object.values(street_avg_lat_lon[street_index])
+	var coords = Object.values(street_avg_lat_lon[street_index])[0]
 	console.log(coords)
 	document.getElementById('res').innerHTML = coords
+	var coord_obj = {lat: coords[0], lon: coords[1]}
+	console.log(coord_obj)
+	return coord_obj
 }
 
 function displayFreeMeters() {
@@ -151,6 +154,18 @@ function displayFreeMeters() {
 		document.getElementById("meter_res").innerHTML = meters
 	}
 }
+
+/*function displayFreeMeterCoords() {
+	var time = document.getElementById('selectTime').value
+	var day = document.getElementById('selectDay').value
+	console.log(time)
+	console.log(day)
+	if(!(time == "Choose time")) {
+		meter_coords = getFreeMeterCoords(day, time)
+		console.log(meter_coords)
+		document.getElementById("meter_res").innerHTML = meter_coords
+	}
+}*/
 
 //curr_time = "09:20AM"
 //curr_day = "SUN"
