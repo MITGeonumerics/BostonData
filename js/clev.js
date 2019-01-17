@@ -95,7 +95,9 @@ for(var i=0; i<street_names.length; i++) {
 	el.value = opt
 	street_frag.appendChild(el)
 }
+
 var selectedStreet = document.getElementById('selectStreet')
+console.log(selectedStreet);
 selectedStreet.appendChild(street_frag)
 
 
