@@ -7,13 +7,29 @@
 
 <body>    
     <div>
-    	<select id = "select" onchange = "getCoords()">
+    	<select id = "selectStreet" onchange = "displayStreetCoords()">
     		<option>Choose a street</option>
     	</select>
     	<!-- <button onclick = "getCoords()">Click</button> -->
     </div>
     <div id = "res">
     	coordinates
+    </div>
+
+    <div>
+        <select id = "selectTime">
+            <option>Choose time</option>
+        </select>
+    </div>
+
+    <div>
+        <select id = "selectDay" onchange = "displayFreeMeters()">
+            <option>Choose day</option>
+        </select>
+    </div>
+
+    <div id = "meter_res">
+        meters
     </div>
 	<script src="js/clev.js"></script>
 </body>
