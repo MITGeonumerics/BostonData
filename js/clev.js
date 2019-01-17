@@ -132,6 +132,7 @@ selectedDay.appendChild(day_frag)
 
 
 //displays [lat, lon] array of avg coordinates when street is selected
+var coord_obj
 function displayStreetCoords() {
 	var name = document.getElementById('selectStreet').value
 	//console.log(name)
@@ -140,7 +141,7 @@ function displayStreetCoords() {
 	var coords = Object.values(street_avg_lat_lon[street_index])[0]
 	console.log(coords)
 	document.getElementById('res').innerHTML = coords
-	var coord_obj = {lat: coords[0], lon: coords[1]}
+	coord_obj = {lat: coords[0], lon: coords[1]}
 	console.log(coord_obj)
 	return coord_obj
 }
