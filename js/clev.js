@@ -107,8 +107,8 @@ function getCoords() {
 	document.getElementById('res').innerHTML = coords
 }
 
-curr_time = "09:20AM"
-curr_day = "SUN"
+//curr_time = "09:20AM"
+//curr_day = "SUN"
 
 var ex_range = "00:00AM-04:00PM MON-FRI"
 var ex_day = "SUN"
