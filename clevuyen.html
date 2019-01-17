@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <script scr = "Parking_Meters.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <title>Google Maps Demo</title>
+        <style>
+                /* Set the size of the div element that contains the map */
+                #map {
+                  height: 400px;  /* The height is 500 pixels */
+                  width: 100%;  /* The width is the width of the web page */
+                 }
+        </style>
+    </head>
+    <body>
+        <script scr = "BostonData\js\Uyen_Nguyen.js"></script>
+        <script scr = "BostonData\js\clev.js"></script>
+        <!--Add the marker clustering library to your page. -->
+        <script src= "js/markerCluster.js">
+        </script>
+        <!-- Google Maps API Key-->
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRe4yAD1aIqDWkintmN31Cl3v4r684Vpc&callback=initMap">
+        </script>
+        <h3>Google Maps Demo</h3>
+        <div id = 'search'>
+            <input type="text" placeholder="ex.09:00AM, 01:00PM">
+            <button>Select</button>
+            <!-- <button onclick = "getCoords()">Click</button> -->
+            <select id = "select" onchange = "getCoords()">
+                <option>Choose a street</option>
+            </select>
+        </div>
+        <div id = 'map'></div>
+        <script>
+            // Initialize and add the map
+            var map;
+            var HOME; // a Marker
+            var center; // coordinates of HOME
+            var markers = [];
+            var cluster;    //only set if markers.length > 10
+            var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+            var icons = {
+                parking: {
+                    icon: iconBase + 'parking_lot_maps.png'
+                }  
+                };
+
+            function initMap() {
+                // The location of Boston,MA
+                var boston_MA = {lat: 42.3601, lng: -71.0589};
+                center = boston_MA;
+                // The map, centered at boston_MA
+                map = new google.maps.Map(
+                    document.getElementById('map'), {zoom: 13, center: boston_MA});
+            }
+        </script>
+
+    </body>
+
+</html>
