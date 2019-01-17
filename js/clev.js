@@ -55,7 +55,7 @@ for(i=0; i<street_names.length; i++) {
 	}
 	street_map_array.push({[street]: meter_array})
 }
-
+street_names.sort()
 for(i=0; i<street_names.length; i++) {
 	var street = street_names[i]
 	var lat_lon_array = [] //list of all lat_lon of parking meters on this street
@@ -87,7 +87,7 @@ for(i=0; i<street_names.length; i++) {
 
 //create options for select street
 var street_frag = document.createDocumentFragment();
-console.log(selectedStreet)
+//console.log(selectedStreet)
 for(var i=0; i<street_names.length; i++) {
 	var opt = street_names[i]
 	var el = document.createElement('option')
@@ -143,8 +143,11 @@ function displayStreetCoords() {
 	document.getElementById('res').innerHTML = coords
 	coord_obj = {lat: coords[0], lng: coords[1]}
 	console.log(coord_obj)
+	map.setZoom(20)
+	map.panTo(coord_obj)
 	return coord_obj
 }
+
 
 function displayFreeMeters() {
 	var time = document.getElementById('selectTime').value
