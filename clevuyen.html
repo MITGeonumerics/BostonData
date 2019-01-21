@@ -38,9 +38,8 @@
         <script>
             // Initialize and add the map
             var map;
-            var HOME; // a Marker
-            var center; // coordinates of HOME
-            var markers = [];
+            var center; 
+            var markers = new observableArray();
             var cluster;    //only set if markers.length > 10
             var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
             var icons = {
@@ -57,6 +56,10 @@
                 map = new google.maps.Map(
                     document.getElementById('map'), {zoom: 13, center: boston_MA});
             }
+            
+            Array.observe(markers,function(changes){
+                setCluster()
+            }); 
         </script>
         <script src = "js\Uyen_Nguyen.js"></script>
         <script src = "js\clev.js"></script>

@@ -55,7 +55,9 @@ for(i=0; i<street_names.length; i++) {
 	}
 	street_map_array.push({[street]: meter_array})
 }
-street_names.sort()
+
+street_names.sort()	//Alphabetize list of street names
+
 for(i=0; i<street_names.length; i++) {
 	var street = street_names[i]
 	var lat_lon_array = [] //list of all lat_lon of parking meters on this street
