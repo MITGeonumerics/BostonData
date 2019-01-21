@@ -1,3 +1,10 @@
+// Custom parking icon
+var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+var icons = {
+    parking: {
+        icon: iconBase + 'parking_lot_maps.png'
+    }  
+};
 /** Add a marker to map
  * @param position given in {lat,lng}. 
  * @return the plotted marker.Function also pushes marker to markers[]
@@ -27,15 +34,17 @@ function addMarkers(coorList){
 /**
  * Create a cluster if markers.size > 10
  * @param an array of markers
- * @return updated cluster
+ * @return updated cluster or None
  */
 function setCluster(markers_list){
+    if(cluster != null){
+        cluster.clearMarkers()
+    }
     if(markers_list.length > 10){
         cluster = new MarkerClusterer(
         map, markers_list,
         {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
         });
-        //cluster = markerCluster;
         return cluster;
     }
     return
@@ -47,7 +56,9 @@ function setCluster(markers_list){
  * @return None
  */ 
 function resetMap(){
-    cluster.clearMarkers();  
+    if(cluster != null){
+        cluster.clearMarkers();
+    }
     setMapOnAll(null);
     markers = [];
 }

@@ -21,17 +21,26 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRe4yAD1aIqDWkintmN31Cl3v4r684Vpc&callback=initMap">
         </script>
         <h3>Google Maps Demo</h3>
-        <div id = 'search'>
-            <input type="text" placeholder="ex.09:00AM, 01:00PM">
-            <button>Select</button>
+        <div>
+            <select id = "selectStreet" onchange = "displayStreetCoords()">
+                <option>Choose a street</option>
+            </select>
             <!-- <button onclick = "getCoords()">Click</button> -->
-            <div>
-    	<select id = "selectStreet" onchange = "displayStreetCoords()">
-    		<option>Choose a street</option>
-    	</select>
-    	<!-- <button onclick = "getCoords()">Click</button> -->
-    </div>
-            <div id = "res"></div>
+        </div>
+        <div id = "res">
+            coordinates
+        </div>
+    
+        <div>
+            <select id = "selectTime">
+                <option>Choose time</option>
+            </select>
+        </div>
+    
+        <div>
+            <select id = "selectDay" onchange = "displayFreeMeters()">
+                <option>Choose day</option>
+            </select>
         </div>
 
         <div id = 'map'></div>
@@ -39,15 +48,9 @@
             // Initialize and add the map
             var map;
             var center; 
-            var markers = new observableArray();
+            var markers = [];
             var cluster;    //only set if markers.length > 10
-            var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-            var icons = {
-                parking: {
-                    icon: iconBase + 'parking_lot_maps.png'
-                }  
-                };
-
+    
             function initMap() {
                 // The location of Boston,MA
                 var boston_MA = {lat: 42.3601, lng: -71.0589};
@@ -57,9 +60,6 @@
                     document.getElementById('map'), {zoom: 13, center: boston_MA});
             }
             
-            Array.observe(markers,function(changes){
-                setCluster()
-            }); 
         </script>
         <script src = "js\Uyen_Nguyen.js"></script>
         <script src = "js\clev.js"></script>

@@ -139,13 +139,13 @@ function displayStreetCoords() {
 	var name = document.getElementById('selectStreet').value
 	//console.log(name)
 	var street_index = street_names.indexOf(name)
-	console.log(street_index)
+	//console.log(street_index)
 	var coords = Object.values(street_avg_lat_lon[street_index])[0]
-	console.log(coords)
-	document.getElementById('res').innerHTML = coords
+	//console.log(coords)
+	//document.getElementById('res').innerHTML = coords
 	coord_obj = {lat: coords[0], lng: coords[1]}
-	console.log(coord_obj)
-	map.setZoom(20)
+	//console.log(coord_obj)
+	map.setZoom(17)
 	map.panTo(coord_obj)
 	return coord_obj
 }
@@ -156,11 +156,12 @@ function displayFreeMeters() {
 	var day = document.getElementById('selectDay').value
 	console.log(time)
 	console.log(day)
-	if(!(time == "Choose time")) {
-		meters = getFreeMeters(day, time)
-		console.log(meters)
-		document.getElementById("meter_res").innerHTML = meters
+	if(!(document.getElementById('selectTime').value == "Choose time")) {
+		meters = getFreeMeters(day,time)
+		getFreeMeterCoords(meters)
+		//document.getElementById("meter_res").innerHTML = meters
 	}
+
 }
 
 /*function displayFreeMeterCoords() {
@@ -215,6 +216,7 @@ function getFreeMeters(ex_day, ex_time) {
 			free_meters.push(i)
 		}
 	}
+	console.log(free_meters)
 	return free_meters
 }
 //example inputs
@@ -296,9 +298,12 @@ function getFreeMeterCoords(meter_index_list) {
 	coord_list = []
 	for(var i=0; i<meter_index_list.length; i++) {
 		meter_index = meter_index_list[i]
-		coords = data_array[meter_index].geometry.coordinates
-		coord_list.push(coords)
+		lat = data_array[meter_index].properties.LATITUDE
+		lng = data_array[meter_index].properties.LONGITUDE
+		if(lat!= null || lng!= null) coord_list.push({lat,lng})
 	}
+	//console.log(coord_list)
+	addMarkers(coord_list)
 	return coord_list
 }
 
