@@ -89,7 +89,6 @@ for(i=0; i<street_names.length; i++) {
 
 //create options for select street
 var street_frag = document.createDocumentFragment();
-//console.log(selectedStreet)
 for(var i=0; i<street_names.length; i++) {
 	var opt = street_names[i]
 	var el = document.createElement('option')
@@ -99,14 +98,12 @@ for(var i=0; i<street_names.length; i++) {
 }
 
 var selectedStreet = document.getElementById('selectStreet')
-console.log(selectedStreet);
 selectedStreet.appendChild(street_frag)
 
 
 //create options for select time
 var time_list = ["00:00AM", "06:00AM", "09:00AM", "12:00PM", "01:00PM", "04:00PM", "08:00PM", "24:00AM"]
 var time_frag = document.createDocumentFragment();
-//console.log(selectedTime)
 for(var i=0; i<time_list.length; i++) {
 	var time_opt = time_list[i]
 	var time_el = document.createElement('option')
@@ -121,7 +118,6 @@ selectedTime.appendChild(time_frag)
 //create options for select day
 var day_list = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
 var day_frag = document.createDocumentFragment();
-//console.log(selectedDay)
 for(var i=0; i<day_list.length; i++) {
 	var day_opt = day_list[i]
 	var day_el = document.createElement('option')
@@ -141,25 +137,21 @@ function displayStreetCoords() {
 	var street_index = street_names.indexOf(name)
 	//console.log(street_index)
 	var coords = Object.values(street_avg_lat_lon[street_index])[0]
-	//console.log(coords)
-	//document.getElementById('res').innerHTML = coords
+	console.log(coords)
 	coord_obj = {lat: coords[0], lng: coords[1]}
-	//console.log(coord_obj)
-	map.setZoom(17)
+	map.setZoom(18)
 	map.panTo(coord_obj)
 	return coord_obj
 }
 
 
 function displayFreeMeters() {
-	var time = document.getElementById('selectTime').value
-	var day = document.getElementById('selectDay').value
-	console.log(time)
-	console.log(day)
-	if(!(document.getElementById('selectTime').value == "Choose time")) {
-		meters = getFreeMeters(day,time)
-		getFreeMeterCoords(meters)
-		//document.getElementById("meter_res").innerHTML = meters
+	if(document.getElementById('selectTime').value != "Choose time") {
+		meters = getFreeMeters(document.getElementById('selectDay').value,document.getElementById('selectTime').value);
+		meters_coords_list = getFreeMeterCoords(meters);
+		console.log(meters)
+		console.log(meters_coords_list)
+		addMarkers(meters_coords_list)
 	}
 
 }
@@ -186,15 +178,14 @@ function displayFreeMeters() {
 
 var all_time_ranges = [] //all unique time ranges for free parking
 
-//returns list of meters free at given time and day
+//returns list of all meters free at given time and day
 function getFreeMeters(ex_day, ex_time) {
 	var free_meters = [] //list of meters free at given time
 
 	for(i=0; i<data_array.length; i++) {
 		var meter = data_array[i].properties
 		var no_pay = data_array[i].properties.PARK_NO_PAY
-		//var time_array = []
-		//console.log(i)
+		var time_array = []
 		if(no_pay != null) {
 			time_array = no_pay.split(",").map(item => item.trim()) //array of free parking ranges for this meter
 			for(j=0; j<time_array.length; j++) {
@@ -205,7 +196,6 @@ function getFreeMeters(ex_day, ex_time) {
 				}
 			}
 		}
-		//console.log(time_array)
 		var is_free_now = false
 		for(var j=0; j<time_array.length; j++) { //iterate through each time range
 			if(in_range(ex_day, ex_time, time_array[j])) {
@@ -302,8 +292,6 @@ function getFreeMeterCoords(meter_index_list) {
 		lng = data_array[meter_index].properties.LONGITUDE
 		if(lat!= null || lng!= null) coord_list.push({lat,lng})
 	}
-	//console.log(coord_list)
-	addMarkers(coord_list)
 	return coord_list
 }
 
