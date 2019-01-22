@@ -104,15 +104,24 @@ selectedStreet.appendChild(street_frag)
 //create options for select time
 var time_list = ["00:00AM", "06:00AM", "09:00AM", "12:00PM", "01:00PM", "04:00PM", "08:00PM", "24:00AM"]
 var time_frag = document.createDocumentFragment();
+var time_frag2 = document.createDocumentFragment();
 for(var i=0; i<time_list.length; i++) {
 	var time_opt = time_list[i]
 	var time_el = document.createElement('option')
+	var time_el2 = document.createElement('option')
 	time_el.innerHTML = time_opt
 	time_el.value = time_opt
+	time_el2.innerHTML = time_opt
+	time_el2.value = time_opt
 	time_frag.appendChild(time_el)
+	time_frag2.appendChild(time_el2)
+	//console.log(time_frag)
+	//console.log(time_frag2)
 }
 var selectedTime = document.getElementById('selectTime')
+var selectedTime2 = document.getElementById('selectTime2')
 selectedTime.appendChild(time_frag)
+//selectedTime2.appendChild(time_frag2)
 
 
 //create options for select day
