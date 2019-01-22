@@ -147,6 +147,8 @@ selectedDay.appendChild(day_frag)
 var coord_obj
 function displayStreetCoords() {
 	var name = document.getElementById('selectStreet').value
+	var time = document.getElementById('selectTime').value
+	var day = document.getElementById('selectDay').value
 	//console.log(name)
 	var street_index = street_names.indexOf(name)
 	//console.log(street_index)
@@ -162,6 +164,9 @@ function displayStreetCoords() {
 		map.panTo(coord_obj)
 		return coord_obj
 	}
+	if(time != "Choose time" && day != "Choose day") {
+		displayFreeMeters()
+	}
 }
 
 
@@ -172,8 +177,8 @@ function displayFreeMeters() {
 		if(cluster != null){
         	cluster.clearMarkers();
     	}
-    	markers = []
     	setMapOnAll(null);
+    	markers = []
 		meters = getFreeMeters(day, time);
 		meters_coords_list = getFreeMeterCoords(meters);
 		console.log(meters)
@@ -333,7 +338,7 @@ function getFreeMeterCoords(meter_index_list) {
 		meter_index = meter_index_list[i]
 		lat = data_array[meter_index].properties.LATITUDE
 		lng = data_array[meter_index].properties.LONGITUDE
-		if(lat!= null || lng!= null) coord_list.push({lat,lng})
+		if(lat != null || lng != null) coord_list.push({lat, lng})
 	}
 	return coord_list
 }
