@@ -241,14 +241,31 @@ function in_range(day, time, range) {
 			if(time.includes("AM") && time_num >= start_num) {
 				in_time_range = true
 			}
-			else if(time.includes("PM") && time_num <= end_num) {
-				in_time_range = true
+			else if(time.includes("PM")) {
+				if(time == "12:00PM") {
+					if(end_num != "12:00") {
+						in_time_range = true
+					}
+				}
+				else {
+					if(time_num <= end_num) {
+						in_time_range = true
+					}
+				}
+
 			}
 		}
 	}
 	else { //start time PM
-		if(time.includes("PM") && time_num >= start_num && time_num <= end_num) {
-			in_time_range = true
+		if(time == "12:00PM") {
+			if(start_num == "12:00") {
+				in_time_range = true
+			}
+		}
+		else if(time.includes("PM")) {
+			if(time_num >= start_num && time_num <= end_num) {
+				in_time_range = true
+			}
 		}
 	}
 
