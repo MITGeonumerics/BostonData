@@ -241,7 +241,7 @@ function in_range(day, time, range) {
 			}
 		}
 		else if(end_time.includes("AM")) { //start time AM, end time AM
-			if(time.includes("AM") && time_num >= start_num && time_num <= end_num) {
+			if(time.includes("AM") && time_num >= start_num && time_num < end_num) {
 				in_time_range = true
 			}
 		}
@@ -256,7 +256,7 @@ function in_range(day, time, range) {
 					}
 				}
 				else {
-					if(time_num <= end_num) {
+					if(time_num < end_num) {
 						in_time_range = true
 					}
 				}
@@ -271,7 +271,7 @@ function in_range(day, time, range) {
 			}
 		}
 		else if(time.includes("PM")) {
-			if(time_num >= start_num && time_num <= end_num) {
+			if(time_num >= start_num && time_num < end_num) {
 				in_time_range = true
 			}
 		}
