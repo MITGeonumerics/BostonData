@@ -206,7 +206,6 @@ function getFreeMeters(ex_day, ex_time) {
 			free_meters.push(i)
 		}
 	}
-	console.log(free_meters)
 	return free_meters
 }
 //example inputs
