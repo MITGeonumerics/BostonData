@@ -28,6 +28,7 @@ function addMarkers(coorList){
         plotLatLng(coorList[i]);
     }
     setCluster(markers);
+    assignListener();
 }
 
 
@@ -75,5 +76,25 @@ function refreshMap(coorList){
 function setMapOnAll(option) {
     for (var i = 0; i < markers.length; i++) {
       markers[i].setMap(option);
+    }
+}
+
+function assignListener(){
+    for (var i = 0, marker; marker = markers[i]; i++) {
+        google.maps.event.addListener(marker, 'click', function() {
+            var content = 
+            '<div id="iw-container">' +
+                '<div class="iw-title">Porcelain Factory of Vista Alegre</div>' +
+                '<div class="iw-content">' +
+                '<img src="http://maps.marnoto.com/en/5wayscustomizeinfowindow/images/vistalegre.jpg" alt="Porcelain Factory of Vista Alegre" height="115" width="83">' +
+                '<p>Founded in 1824, the Porcelain Factory of Vista Alegre was the first industrial unit dedicated to porcelain production in Portugal. For the foundation and success of this risky industrial development was crucial the spirit of persistence of its founder, José Ferreira Pinto Basto. Leading figure in Portuguese society of the nineteenth century farm owner, daring dealer, wisely incorporated the liberal ideas of the century, having become "the first example of free enterprise" in Portugal.</p>' +
+                '<div class="iw-bottom-gradient"></div>' +
+            '</div>';
+
+            infowindow.setContent(content);
+            infowindow.setOptions({maxWidth:250}); 
+            infowindow.open(map, this);
+            map.panTo(this.getPosition())
+        });
     }
 }
