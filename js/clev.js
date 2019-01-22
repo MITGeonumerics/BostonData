@@ -89,6 +89,11 @@ for(i=0; i<street_names.length; i++) {
 
 //create options for select street
 var street_frag = document.createDocumentFragment();
+var opt = "Show all"
+var el = document.createElement('option')
+el.innerHTML = opt
+el.value = opt
+street_frag.appendChild(el)
 for(var i=0; i<street_names.length; i++) {
 	var opt = street_names[i]
 	var el = document.createElement('option')
@@ -145,7 +150,7 @@ function displayStreetCoords() {
 	//console.log(name)
 	var street_index = street_names.indexOf(name)
 	//console.log(street_index)
-	if(name == "Choose a street") {
+	if(name == "Choose a street" || name == "Show all") {
 		map.setCenter(center)
 		map.setZoom(13)
 	}
@@ -164,6 +169,11 @@ function displayFreeMeters() {
 	var time = document.getElementById('selectTime').value
 	var day = document.getElementById('selectDay').value
 	if(time != "Choose time" && day != "Choose day") {
+		if(cluster != null){
+        	cluster.clearMarkers();
+    	}
+    	markers = []
+    	setMapOnAll(null);
 		meters = getFreeMeters(day, time);
 		meters_coords_list = getFreeMeterCoords(meters);
 		console.log(meters)
