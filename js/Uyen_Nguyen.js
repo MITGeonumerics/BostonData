@@ -82,23 +82,28 @@ function setMapOnAll(option) {
 function assignListener(){
     for (var i = 0, marker; marker = markers[i]; i++) {
         google.maps.event.addListener(marker, 'click', function() {
+            var selectedPos = {lat:this.getPosition().lat(),lng:this.getPosition().lng()};
+            var noPayPolicy = getInfo(selectedPos, 'PARK_NO_PAY');
+            var payPolicy = getInfo(selectedPos, 'PAY_POLICY');
+            var parkingType = getInfo(selectedPos, 'METER_TYPE');
+            var onStreet = getInfo(selectedPos, 'STREET');
             
-            var content = 
-            '<div id="iw-container">' +
-                '<div class="iw-title"> Hi</div>' +
+            var content = "" + onStreet + "\r\n" +
+                    "Coordinates: (" + selectedPos.lat + ", " + selectedPos.lng + ")" + "\r\n" + 
+                    "Space type: " + parkingType + "\r\n" +
+                    "Free period: " + noPayPolicy + "\r\n" +
+                    "Metered period: " + payPolicy;
+
+            console.log(content);
+            /*'<div id="iw-container">' +
+                '<div class="iw-title">' + onStreet + '</div>' +
 
                 '<div class="iw-content">'  +
                 '<p>Founded in 1824, the Porcelain Factory of Vista Alegre was the first industrial unit dedicated to porcelain production in Portugal. For the foundation and success of this risky industrial development was crucial the spirit of persistence of its founder, José Ferreira Pinto Basto. Leading figure in Portuguese society of the nineteenth century farm owner, daring dealer, wisely incorporated the liberal ideas of the century, having become "the first example of free enterprise" in Portugal.</p>' +
                 '<div class="iw-bottom-gradient"></div>' +
-            '</div>';
-            var selectedPos = {lat:this.getPosition().lat(),lng:this.getPosition().lng()};
-            var noPayPolicy = getInfo(selectedPos, 'PARK_NO_PAY');
-            var payPolicy = getInfo(selectedPos, 'PAY_POLICY')
-            var parkingType = getInfo(selectedPos, 'METER_TYPE')
-            var onStreet = getInfo(selectedPos, 'STREET')
-            
+            '</div>';*/
             infowindow.setContent(content);
-            infowindow.setOptions({maxWidth:150}); 
+            infowindow.setOptions({maxWidth:200}); 
             infowindow.open(map, this);
             map.panTo(this.getPosition())
         });
@@ -106,8 +111,8 @@ function assignListener(){
 }
 function getIndexofPos(position){
     for(var index = 0; index < data_array.length-1; index++){
-        var sameLat = position.lat == data_array[index].properties.LATITUDE;
-        var sameLng = position.lng == data_array[index].properties.LONGITUDE;
+        var sameLat = Math.abs(position.lat - data_array[index].properties.LATITUDE) < 0.000001;
+        var sameLng = Math.abs(position.lng - data_array[index].properties.LONGITUDE) < 0.000001;
         if  (sameLat && sameLng){
             return index;
         }
