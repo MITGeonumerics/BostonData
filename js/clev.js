@@ -102,7 +102,7 @@ selectedStreet.appendChild(street_frag)
 
 
 //create options for select time
-var time_list = ["00:00AM", "06:00AM", "09:00AM", "12:00PM", "01:00PM", "04:00PM", "08:00PM", "24:00AM"]
+var time_list = ["00:00AM", "01:00AM", "02:00AM", "03:00AM", "04:00AM", "05:00AM","06:00AM", "07:00AM", "08:00AM","09:00AM", "10:00AM", "11:00AM","12:00PM", "01:00PM", "02:00PM", "03:00PM", "04:00PM", "05:00PM", "06:00PM", "07:00PM", "08:00PM", "09:00PM", "10:00PM", "11:00PM"]
 var time_frag = document.createDocumentFragment();
 var time_frag2 = document.createDocumentFragment();
 for(var i=0; i<time_list.length; i++) {
@@ -145,18 +145,26 @@ function displayStreetCoords() {
 	//console.log(name)
 	var street_index = street_names.indexOf(name)
 	//console.log(street_index)
-	var coords = Object.values(street_avg_lat_lon[street_index])[0]
-	console.log(coords)
-	coord_obj = {lat: coords[0], lng: coords[1]}
-	map.setZoom(18)
-	map.panTo(coord_obj)
-	return coord_obj
+	if(name == "Choose a street") {
+		map.setCenter(center)
+		map.setZoom(13)
+	}
+	else {
+		var coords = Object.values(street_avg_lat_lon[street_index])[0]
+		console.log(coords)
+		coord_obj = {lat: coords[0], lng: coords[1]}
+		map.setZoom(18)
+		map.panTo(coord_obj)
+		return coord_obj
+	}
 }
 
 
 function displayFreeMeters() {
-	if(document.getElementById('selectTime').value != "Choose time") {
-		meters = getFreeMeters(document.getElementById('selectDay').value,document.getElementById('selectTime').value);
+	var time = document.getElementById('selectTime').value
+	var day = document.getElementById('selectDay').value
+	if(time != "Choose time" && day != "Choose day") {
+		meters = getFreeMeters(day, time);
 		meters_coords_list = getFreeMeterCoords(meters);
 		console.log(meters)
 		console.log(meters_coords_list)
