@@ -65,11 +65,11 @@ function resetMap(){
 /**Clear all plotted markers and plot new markers
  * @param array of positions, each element given in {lat,lng} format
  * @return None
- */
+ *
 function refreshMap(coorList){
     resetMap();
     addMarkers(coorList);
-}
+}*/
 function setMapOnAll(option) {
     for (var i = 0; i < markers.length; i++) {
       markers[i].setMap(option);
