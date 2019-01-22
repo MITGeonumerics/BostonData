@@ -174,11 +174,7 @@ function displayFreeMeters() {
 	var time = document.getElementById('selectTime').value
 	var day = document.getElementById('selectDay').value
 	if(time != "Choose time" && day != "Choose day") {
-		if(cluster != null){
-        	cluster.clearMarkers();
-    	}
-    	setMapOnAll(null);
-    	markers = []
+		clearMap();
 		meters = getFreeMeters(day, time);
 		meters_coords_list = getFreeMeterCoords(meters);
 		console.log(meters)
