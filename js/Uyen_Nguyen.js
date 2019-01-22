@@ -61,6 +61,8 @@ function resetMap(){
     }
     setMapOnAll(null);
     markers = [];
+    map.setCenter(center);
+    map.setZoom(13)
 }
 /**Clear all plotted markers and plot new markers
  * @param array of positions, each element given in {lat,lng} format
