@@ -63,10 +63,10 @@ function resetMap(){
     map.setZoom(13)
 }
 /**Clear all plotted markers and plot new markers
- * @param array of positions, each element given in {lat,lng} format
+ * @param None
  * @return None
  */
-function clearMap(coorList){
+function clearMap(){
     if(cluster != null){
         cluster.clearMarkers();
     }
