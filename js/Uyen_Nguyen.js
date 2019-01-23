@@ -87,23 +87,20 @@ function assignListener(){
             var payPolicy = getInfo(selectedPos, 'PAY_POLICY');
             var parkingType = getInfo(selectedPos, 'METER_TYPE');
             var onStreet = getInfo(selectedPos, 'STREET');
-            
-            var content = "" + onStreet + "\r\n" +
-                    "Coordinates: (" + selectedPos.lat + ", " + selectedPos.lng + ")" + "\r\n" + 
-                    "Space type: " + parkingType + "\r\n" +
-                    "Free period: " + noPayPolicy + "\r\n" +
-                    "Metered period: " + payPolicy;
 
-            console.log(content);
-            /*'<div id="iw-container">' +
+            var content = 
+            '<div id="iw-container">' +
                 '<div class="iw-title">' + onStreet + '</div>' +
-
-                '<div class="iw-content">'  +
-                '<p>Founded in 1824, the Porcelain Factory of Vista Alegre was the first industrial unit dedicated to porcelain production in Portugal. For the foundation and success of this risky industrial development was crucial the spirit of persistence of its founder, José Ferreira Pinto Basto. Leading figure in Portuguese society of the nineteenth century farm owner, daring dealer, wisely incorporated the liberal ideas of the century, having become "the first example of free enterprise" in Portugal.</p>' +
+                '<div class="iw-subTitle">' + "(" + selectedPos.lat + ", " + selectedPos.lng + ")" + '</div>' +
+                '<div class="iw-content">'  + 
+                    '<p>'+"Space type: " + parkingType + '</p>' +
+                    '<p>'+"Free period: " + noPayPolicy +'</p>'+
+                    '<p>'+ "Metered period: " + payPolicy +'</p>'+
                 '<div class="iw-bottom-gradient"></div>' +
-            '</div>';*/
+            '</div>';
+
             infowindow.setContent(content);
-            infowindow.setOptions({maxWidth:200}); 
+            infowindow.setOptions({maxWidth:180}); 
             infowindow.open(map, this);
             map.panTo(this.getPosition())
         });
