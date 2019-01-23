@@ -14,6 +14,7 @@ function plotLatLng(position){
         position: position,
         map: map,
         icon: icons.parking.icon
+        
     });
     markers.push(marker);
     return marker;
@@ -57,22 +58,24 @@ function setCluster(markers_list){
  * @return None
  */ 
 function resetMap(){
+    clearMap();
+    map.setCenter(center);
+    map.setZoom(defaultZoom);
+    selectedStreet.value = "Choose a street"
+    document.getElementById('selectTime').value = "Start time"
+    document.getElementById('selectDay').value = "Choose day"
+}
+/**Clear all plotted markers and plot new markers
+ * @param None
+ * @return None
+ */
+function clearMap(){
     if(cluster != null){
         cluster.clearMarkers();
     }
     setMapOnAll(null);
     markers = [];
-    map.setCenter(center);
-    map.setZoom(13)
 }
-/**Clear all plotted markers and plot new markers
- * @param array of positions, each element given in {lat,lng} format
- * @return None
- *
-function refreshMap(coorList){
-    resetMap();
-    addMarkers(coorList);
-}*/
 function setMapOnAll(option) {
     for (var i = 0; i < markers.length; i++) {
       markers[i].setMap(option);
@@ -82,19 +85,42 @@ function setMapOnAll(option) {
 function assignListener(){
     for (var i = 0, marker; marker = markers[i]; i++) {
         google.maps.event.addListener(marker, 'click', function() {
+            var selectedPos = {lat:this.getPosition().lat(),lng:this.getPosition().lng()};
+            //var noPayPolicy = getInfo(selectedPos, 'PARK_NO_PAY');
+            var payPolicy = getInfo(selectedPos, 'PAY_POLICY');
+            var parkingType = getInfo(selectedPos, 'METER_TYPE');
+            var onStreet = getInfo(selectedPos, 'STREET');
+
             var content = 
             '<div id="iw-container">' +
-                '<div class="iw-title">Porcelain Factory of Vista Alegre</div>' +
-                '<div class="iw-content">' +
-                '<img src="http://maps.marnoto.com/en/5wayscustomizeinfowindow/images/vistalegre.jpg" alt="Porcelain Factory of Vista Alegre" height="115" width="83">' +
-                '<p>Founded in 1824, the Porcelain Factory of Vista Alegre was the first industrial unit dedicated to porcelain production in Portugal. For the foundation and success of this risky industrial development was crucial the spirit of persistence of its founder, José Ferreira Pinto Basto. Leading figure in Portuguese society of the nineteenth century farm owner, daring dealer, wisely incorporated the liberal ideas of the century, having become "the first example of free enterprise" in Portugal.</p>' +
+                '<div class="iw-title">' + onStreet + '</div>' +
+                '<div class="iw-subTitle">' + "(" + selectedPos.lat + ", " + selectedPos.lng + ")" + '</div>' +
+                '<div class="iw-content">'  + 
+                    '<p>'+"Space type: " + parkingType + '</p>' +
+                    /*'<p>'+"Free period: " + noPayPolicy +'</p>'+*/
+                    '<p>'+ "Metered period: " + payPolicy +'</p>'+
                 '<div class="iw-bottom-gradient"></div>' +
             '</div>';
 
             infowindow.setContent(content);
-            infowindow.setOptions({maxWidth:250}); 
+            infowindow.setOptions({maxWidth:200}); 
             infowindow.open(map, this);
             map.panTo(this.getPosition())
+            //map.setZoom(18)
         });
     }
+}
+function getIndexofPos(position){
+    for(var index = 0; index < data_array.length-1; index++){
+        var sameLat = Math.abs(position.lat - data_array[index].properties.LATITUDE) < 0.000001;
+        var sameLng = Math.abs(position.lng - data_array[index].properties.LONGITUDE) < 0.000001;
+        if  (sameLat && sameLng){
+            return index;
+        }
+    }
+}
+
+function getInfo(position,prop){
+    var indexPos = getIndexofPos(position);
+    return data_array[indexPos].properties[prop];
 }

@@ -154,7 +154,7 @@ function displayStreetCoords() {
 	//console.log(street_index)
 	if(name == "Choose a street" || name == "Show all") {
 		map.setCenter(center)
-		map.setZoom(13)
+		map.setZoom(defaultZoom)
 	}
 	else {
 		var coords = Object.values(street_avg_lat_lon[street_index])[0]
@@ -174,11 +174,7 @@ function displayFreeMeters() {
 	var time = document.getElementById('selectTime').value
 	var day = document.getElementById('selectDay').value
 	if(time != "Choose time" && day != "Choose day") {
-		if(cluster != null){
-        	cluster.clearMarkers();
-    	}
-    	setMapOnAll(null);
-    	markers = []
+		clearMap();
 		meters = getFreeMeters(day, time);
 		meters_coords_list = getFreeMeterCoords(meters);
 		console.log(meters)
