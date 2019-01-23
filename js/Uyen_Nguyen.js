@@ -86,7 +86,7 @@ function assignListener(){
     for (var i = 0, marker; marker = markers[i]; i++) {
         google.maps.event.addListener(marker, 'click', function() {
             var selectedPos = {lat:this.getPosition().lat(),lng:this.getPosition().lng()};
-            var noPayPolicy = getInfo(selectedPos, 'PARK_NO_PAY');
+            //var noPayPolicy = getInfo(selectedPos, 'PARK_NO_PAY');
             var payPolicy = getInfo(selectedPos, 'PAY_POLICY');
             var parkingType = getInfo(selectedPos, 'METER_TYPE');
             var onStreet = getInfo(selectedPos, 'STREET');
@@ -97,7 +97,7 @@ function assignListener(){
                 '<div class="iw-subTitle">' + "(" + selectedPos.lat + ", " + selectedPos.lng + ")" + '</div>' +
                 '<div class="iw-content">'  + 
                     '<p>'+"Space type: " + parkingType + '</p>' +
-                    '<p>'+"Free period: " + noPayPolicy +'</p>'+
+                    /*'<p>'+"Free period: " + noPayPolicy +'</p>'+*/
                     '<p>'+ "Metered period: " + payPolicy +'</p>'+
                 '<div class="iw-bottom-gradient"></div>' +
             '</div>';
