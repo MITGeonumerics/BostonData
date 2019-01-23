@@ -60,7 +60,10 @@ function setCluster(markers_list){
 function resetMap(){
     clearMap();
     map.setCenter(center);
-    map.setZoom(13)
+    map.setZoom(defaultZoom);
+    selectedStreet.value = "Choose a street"
+    document.getElementById('selectTime').value = "Start time"
+    document.getElementById('selectDay').value = "Choose day"
 }
 /**Clear all plotted markers and plot new markers
  * @param None
@@ -100,9 +103,10 @@ function assignListener(){
             '</div>';
 
             infowindow.setContent(content);
-            infowindow.setOptions({maxWidth:180}); 
+            infowindow.setOptions({maxWidth:200}); 
             infowindow.open(map, this);
             map.panTo(this.getPosition())
+            //map.setZoom(18)
         });
     }
 }

@@ -121,6 +121,7 @@
             var markers = [];
             var cluster;    //only set if markers.length > 10
             var infowindow; 
+            var defaultZoom = 14;
     
             function initMap() {
                 // The location of Boston,MA
@@ -128,7 +129,7 @@
                 center = boston_MA;
                 // The map, centered at boston_MA
                 map = new google.maps.Map(
-                    document.getElementById('map'), {zoom: 13, center: boston_MA});
+                    document.getElementById('map'), {zoom: defaultZoom, center: boston_MA});
                 infowindow = new google.maps.InfoWindow();    
             }
         </script>
