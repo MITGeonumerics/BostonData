@@ -1,6 +1,6 @@
 var dataArray = data.features;
 
-//-2) Create a thing that tallies the number of meters per street
+//1) Create a thing that tallies the number of meters per street
 function metersPerStreet() {
     var stArr = uniqueStreetArray()
     var stCounterArr = []
@@ -33,7 +33,7 @@ function topmetersPerStreet(x) {
     }
     return arr2
 }
-// -1) Create a thing that is an array of arrays representing which day has the most open hours?
+// 2) Create a thing that is an array of arrays representing which day has the most open hours?
 
 function freeMeterDailyTallies() {
     arrCounts = [0, 0, 0, 0, 0, 0, 0]
@@ -100,7 +100,7 @@ function freeMeterDailyTally(l) {
     return arrTallies
 }
 
-//0) Find the average amount hours that parking is free
+//3) Find the average amount hours that parking is free
 function averageFreeHoursPerWeek() {
     var numerator = 0;
     var meters = 0;
@@ -219,7 +219,7 @@ function calculateHours(startNum, startTime, endNum, endTime) {
     }
 }
 
-//1) Find the number of different streets on which there is parking
+//4) Find the number of different streets on which there is parking
 
 function streetCounter() {
 
@@ -256,7 +256,7 @@ function uniqueStreetArray() {
     uniqueStreets.shift();
     return uniqueStreets
 }
-//2) Find the number of active and inactive meters
+//5) Find the number of active and inactive meters
 function meterActivityCounter() {
 
     var activeMeters = 0;
@@ -280,7 +280,7 @@ function meterActivityCounter() {
     console.log("Null-activity meters:" + nullActivityMeters);
 
 }
-//3) Find the numbers of meters that are single space
+//6) Find the numbers of meters that are single space
 function meterSpaceTypeCounter() {
 
     var singleSpaceCounter = 0;
@@ -299,7 +299,7 @@ function meterSpaceTypeCounter() {
     console.log("Other: " + otherCounter);
 
 }
-//4) Find the number of different no pay hours
+//7) Find the number of different no pay hours
 function noPayHoursCounter() {
 
     var uniqueHours = ["Generic Name"];
@@ -315,11 +315,28 @@ function noPayHoursCounter() {
         }
     }
     uniqueHours.shift();
-    console.log(uniqueHours);
-    console.log(uniqueHours.length)
+    return(uniqueHours.length)
 }
 
-//5) Find the number districts
+function uniqueNoPayHoursArr() {
+
+    var uniqueHours = ["Generic Name"];
+
+    for (var i = 0; i < dataArray.length; i++) {
+        for (var j = 0; j < uniqueHours.length; j++) {
+            if (uniqueHours[j] == dataArray[i].properties.PARK_NO_PAY) {
+                break;
+            }
+            if (j == uniqueHours.length - 1 && uniqueHours[j] != dataArray[i].properties.PARK_NO_PAY) {
+                uniqueHours.push(dataArray[i].properties.PARK_NO_PAY)
+            }
+        }
+    }
+    uniqueHours.shift();
+    return uniqueHours;
+}
+
+//8) Find the number districts
 function districtCounter() {
 
     var uniqueDistricts = ["Generic Name"];
@@ -339,7 +356,7 @@ function districtCounter() {
     console.log(uniqueDistricts.length - 1)
 }
 
-//6) Spaces in each district
+//9) Spaces in each district
 function spacesPerDistrict() {
 
     var d0Counter = 0;
@@ -357,7 +374,7 @@ function spacesPerDistrict() {
     console.log("D0 Spaces: " + d0Counter)
     console.log("D1 Spaces: " + d1Counter)
 }
-//7) Find the numbers of meters that have sensors
+//10) Find the numbers of meters that have sensors
 function sensorCounter() {
 
     var sensorCounter = 0;
@@ -378,7 +395,7 @@ function sensorCounter() {
 
     return noSensorCounter;
 }
-//8) Find the number of different date on which meters were installed
+//11) Find the number of different date on which meters were installed
 
 function installationCounter() {
 
@@ -439,7 +456,7 @@ function installationsPerDate() {
     return arr
 }
 
-//9) Unique pay hours
+//12) Unique pay hours
 function payHoursCounter() {
 
     var uniqueHours = ["Generic Name"];
@@ -458,9 +475,56 @@ function payHoursCounter() {
     return uniqueHours
 }
 
+//12.5) Unique pay hours without the $ or total cost thingy
+function refinePayHours() {
+    arr1 = payHoursCounter()
 
+    for (var i = 0; i < arr1.length; i++) {
+        var hoursOnly = ""
 
-//10) pay hours
+        if (arr1[i] == null) {
+            arr1[i] = null
+        }
+        else {
+            arr = createArrayOfHours(arr1[i])
+
+            for (var j = 0; j < arr.length; j++) {
+                dollarSignIndex = arr[j].indexOf("$")-1
+                arr[j] = arr[j].substring(0, dollarSignIndex)
+            }
+
+            for (var k = 0; k < arr.length; k++) {
+                hoursOnly += arr[k] + ", "
+            }
+            hoursOnly = hoursOnly.substring(0,hoursOnly.length-2)
+            arr1[i] = hoursOnly
+        }
+    }
+
+    return arr1
+}
+
+function uniquePayHoursWithoutCosts(){
+    arr = refinePayHours()
+
+    var uniqueHours = ["Generic Name"];
+
+    for (var i = 0; i < arr.length; i++) {
+        for (var j = 0; j < uniqueHours.length; j++) {
+            if (uniqueHours[j] == arr[i]) {
+                break;
+            }
+            if (j == uniqueHours.length - 1 && uniqueHours[j] != arr[i]) {
+                uniqueHours.push(arr[i])
+            }
+        }
+    }
+    uniqueHours.shift();
+    return uniqueHours
+
+}
+
+//13) pay hours
 
 function averagePayHoursPerWeek() {
     var numerator = 0;
@@ -487,7 +551,7 @@ function totalPayHours(l) {
     return totalHoursCounter;
 }
 
-// 11) Create a thing that is an array of arrays representing which day has the most open hours?
+// 14) Create a thing that is an array of arrays representing which day has the most open hours?
 
 function payMeterDailyTallies() {
     arrCounts = [0, 0, 0, 0, 0, 0, 0]
@@ -553,10 +617,146 @@ function payMeterDailyTally(l) {
     arrTallies = [sunCount, monCount, tueCount, wedCount, thuCount, friCount, satCount]
     return arrTallies
 }
+//15) Tally directions of spots
+function directionCounter() {
 
+    var south = 0;
+    var north = 0;
+    var east = 0;
+    var west = 0;
+    var nullDirCounter = 0;
 
+    var arr = []
 
+    for (var i = 0; i < dataArray.length; i++) {
+        if (dataArray[i].properties.DIR == "S") {
+            south++
+        }
+        if (dataArray[i].properties.DIR == "E") {
+            east++
+        }
+        if (dataArray[i].properties.DIR == "W") {
+            west++
+        }
+        if (dataArray[i].properties.DIR == "N") {
+            north++
+        }
+        if (dataArray[i].properties.DIR == null) {
+            nullDirCounter++
+        }
+    }
+    arr = [["North", north], ["South", south], ["East", east], ["West", west], ["Null", nullDirCounter]]
 
+    return arr;
+}
+
+//16) Most popular pay hours range
+function payHourRangeArr() {
+    ranges = payHoursCounter()
+    rangesCounts = []
+
+    for (var i = 0; i<ranges.length; i++) {
+        rangesCounts.push(0)
+    }
+
+    for (var j = 0; j<dataArray.length; j++) {
+        index = ranges.indexOf(dataArray[j].properties.PAY_POLICY)
+        rangesCounts[index] +=1
+    }
+
+    arr = []
+    for (var k = 0; k<ranges.length; k++) {
+        arr.push([ranges[k], rangesCounts[k]])
+    }
+    arr.sort(function (a, b) { return b[1] - a[1] })
+    return arr
+}
+
+function eliminateCostFromHourModeArr() {
+    arr1 = payHourRangeArr()
+
+    for (var i = 0; i < arr1.length; i++) {
+        var hoursOnly = ""
+
+        if (arr1[i][0] == null) {
+            arr1[i][0] = null
+        }
+        else {
+            arr = createArrayOfHours(arr1[i][0])
+
+            for (var j = 0; j < arr.length; j++) {
+                dollarSignIndex = arr[j].indexOf("$")-1
+                arr[j] = arr[j].substring(0, dollarSignIndex)
+            }
+
+            for (var k = 0; k < arr.length; k++) {
+                hoursOnly += arr[k] + ", "
+            }
+            hoursOnly = hoursOnly.substring(0,hoursOnly.length-2)
+            arr1[i][0] = hoursOnly
+        }
+    }
+
+    return arr1
+}
+
+function combinedPayHourModesNoCost(){
+    arr = eliminateCostFromHourModeArr()
+    for (var i = 0; i<arr.length; i++) {
+        for (var j = i+1; j<arr.length-1; j++) {
+            if (arr[i][0]==arr[j][0]) {
+                arr[i][1] += arr[j][1]
+                arr.splice(j, 1)
+                j--;
+            }
+        }
+    }
+    arr.sort(function (a, b) { return b[1] - a[1] })
+return arr
+}
+
+//17) Most popular free hour range
+function freeHourRangeArr() {
+    ranges = uniqueNoPayHoursArr()
+    rangesCounts = []
+
+    for (var i = 0; i<ranges.length; i++) {
+        rangesCounts.push(0)
+    }
+
+    for (var j = 0; j<dataArray.length; j++) {
+        index = ranges.indexOf(dataArray[j].properties.PARK_NO_PAY)
+        rangesCounts[index] +=1
+    }
+
+    arr = []
+    for (var k = 0; k<ranges.length; k++) {
+        arr.push([ranges[k], rangesCounts[k]])
+    }
+    arr.sort(function (a, b) { return b[1] - a[1] })
+
+    return arr
+}
+
+//17.5) limit to top popular free hour ranges
+function topFreeRangePerStreet(x) {
+    arr = freeHourRangeArr()
+    arr2 = []
+    for (var i = 0; i < x; i++) {
+        arr2.push(arr[i])
+    }
+    return arr2
+}
+
+//17.75) limit to top popular par hour ranges
+function topPayRangePerStreet(x) {
+    arr = combinedPayHourModesNoCost()
+    arr2 = []
+    for (var i = 0; i < x; i++) {
+        arr2.push(arr[i])
+    }
+    return arr2
+}
 
 
 
@@ -582,6 +782,8 @@ google.charts.load('current', { 'packages': ['corechart'] });
 google.charts.setOnLoadCallback(drawChart);
 google.charts.setOnLoadCallback(drawChart2);
 google.charts.setOnLoadCallback(drawChart4);
+google.charts.setOnLoadCallback(drawChart5);
+google.charts.setOnLoadCallback(drawChart6);
 
 
 google.charts.load('current', { 'packages': ['table'] });
@@ -620,8 +822,9 @@ function drawChart() {
     // Set chart options
     var options = {
         'title': 'Hours of free parking per day of the week',
-        'width': 400,
-        'height': 300
+        'width': 300,
+        'height': 150,
+        pieHole: .4
     };
 
     // Instantiate and draw our chart, passing in some options.
@@ -659,14 +862,14 @@ function drawChart2() {
     data.addColumn('string', 'Street');
     data.addColumn('number', 'Number of Meters');
     data.addRows(
-        topmetersPerStreet(50)
+        topmetersPerStreet(10)
     );
 
     // Set chart options
     var options = {
         'title': 'Meters Per Street',
-        'width': 700,
-        'height': 500
+        'width': 600,
+        'height': 400
     };
 
     // Instantiate and draw our chart, passing in some options.
@@ -688,11 +891,11 @@ function drawChart3() {
     data.addColumn('string', 'Street')
     data.addColumn('number', 'Number of Meters')
     data.addRows(
-        topmetersPerStreet(10)
+        topmetersPerStreet(188)
     )
     var table = new google.visualization.Table(document.getElementById('table_div'));
 
-    table.draw(data, { showRowNumber: true, width: '100%', height: '100%' });
+    table.draw(data, { showRowNumber: true, width: '120%', height: 475});
 }
 
 
@@ -719,12 +922,98 @@ function drawChart4() {
     // Set chart options
     var options = {
         'title': 'Installations Per Date',
-        'width': 400,
-        'height': 300
+        'width': 250,
+        'height': 200,
     };
 
     // Instantiate and draw our chart, passing in some options.
     //   var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
     var chart = new google.visualization.PieChart(document.getElementById('chart_div4'));
+    chart.draw(data, options);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Callback that creates and populates a data table,
+// instantiates the pie chart, passes in the data and
+// draws it.
+function drawChart5() {
+
+    // Create the data table.
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Hour Range');
+    data.addColumn('number', 'Number of Meters');
+    data.addRows(
+        topPayRangePerStreet(5)
+    );
+
+    // Set chart options
+    var options = {
+        'title': 'Counts of Common Hour Ranges - Paid Parking',
+        'width': 300,
+        'height': 200
+    };
+
+    // Instantiate and draw our chart, passing in some options.
+    //   var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+    var chart = new google.visualization.BarChart(document.getElementById('chart_div5'));
+    chart.draw(data, options);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Callback that creates and populates a data table,
+// instantiates the pie chart, passes in the data and
+// draws it.
+function drawChart6() {
+
+    // Create the data table.
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Hour Range');
+    data.addColumn('number', 'Number of Meters');
+    data.addRows(
+        topFreeRangePerStreet(5)
+    );
+
+    // Set chart options
+    var options = {
+        'title': 'Counts of Common Hour Ranges - Free Parking',
+        'width': 300,
+        'height': 200
+    };
+
+    // Instantiate and draw our chart, passing in some options.
+    //   var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+    var chart = new google.visualization.BarChart(document.getElementById('chart_div6'));
     chart.draw(data, options);
 }
