@@ -822,8 +822,9 @@ function drawChart() {
     // Set chart options
     var options = {
         'title': 'Hours of free parking per day of the week',
-        'width': 400,
-        'height': 300
+        'width': 300,
+        'height': 150,
+        pieHole: .4
     };
 
     // Instantiate and draw our chart, passing in some options.
@@ -861,14 +862,14 @@ function drawChart2() {
     data.addColumn('string', 'Street');
     data.addColumn('number', 'Number of Meters');
     data.addRows(
-        topmetersPerStreet(50)
+        topmetersPerStreet(10)
     );
 
     // Set chart options
     var options = {
         'title': 'Meters Per Street',
-        'width': 700,
-        'height': 500
+        'width': 600,
+        'height': 400
     };
 
     // Instantiate and draw our chart, passing in some options.
@@ -890,11 +891,11 @@ function drawChart3() {
     data.addColumn('string', 'Street')
     data.addColumn('number', 'Number of Meters')
     data.addRows(
-        topmetersPerStreet(10)
+        topmetersPerStreet(188)
     )
     var table = new google.visualization.Table(document.getElementById('table_div'));
 
-    table.draw(data, { showRowNumber: true, width: '100%', height: '100%' });
+    table.draw(data, { showRowNumber: true, width: '120%', height: 475});
 }
 
 
@@ -921,8 +922,8 @@ function drawChart4() {
     // Set chart options
     var options = {
         'title': 'Installations Per Date',
-        'width': 400,
-        'height': 300
+        'width': 250,
+        'height': 200,
     };
 
     // Instantiate and draw our chart, passing in some options.
@@ -963,13 +964,13 @@ function drawChart5() {
     // Set chart options
     var options = {
         'title': 'Counts of Common Hour Ranges - Paid Parking',
-        'width': 700,
-        'height': 500
+        'width': 300,
+        'height': 200
     };
 
     // Instantiate and draw our chart, passing in some options.
     //   var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div5'));
+    var chart = new google.visualization.BarChart(document.getElementById('chart_div5'));
     chart.draw(data, options);
 }
 
@@ -1007,12 +1008,12 @@ function drawChart6() {
     // Set chart options
     var options = {
         'title': 'Counts of Common Hour Ranges - Free Parking',
-        'width': 700,
-        'height': 500
+        'width': 300,
+        'height': 200
     };
 
     // Instantiate and draw our chart, passing in some options.
     //   var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div6'));
+    var chart = new google.visualization.BarChart(document.getElementById('chart_div6'));
     chart.draw(data, options);
 }
