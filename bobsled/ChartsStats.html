@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+<head>
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="img/fav.png">
+	<!-- Author Meta -->
+	<meta name="author" content="CodePixar">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
+	<!-- meta character set -->
+	<meta charset="UTF-8">
+	<!-- Site Title -->
+	<title>Boston Parking Data</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,500,600" rel="stylesheet">
+		<!--
+		CSS
+		============================================= -->
+		<link rel="stylesheet" href="css/linearicons.css">
+		<link rel="stylesheet" href="css/owl.carousel.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/nice-select.css">
+		<link rel="stylesheet" href="css/magnific-popup.css">
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/main.css">
+    </head>
+    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="/Users/annalandler/Desktop/MiniUROP/BostonData/Parking_Meters.js"></script>
+    <script src = "/Users/annalandler/Desktop/MiniUROP/BostonData/js/anna.js"></script>
+
+	<body>
+		<div class="main-wrapper-first relative">
+			<header>
+				<div class="container">
+					<div class="header-wrap">
+						<div class="header-top d-flex justify-content-between align-items-center">
+							<div class="logo">
+								<img src="img/BPD.png" alt="">
+							</div>
+							<div class="main-menubar d-flex align-items-center">
+								<nav class="hide">
+                                    <a href="index.html">Home</a>
+									<a href="map.html">Map</a>
+									<a href="ChartsStats.html">Charts and Statistics</a>
+									<a href="Blogs.html">Blogs</a>
+								</nav>
+								<div class="menu-bar"><span class="lnr lnr-menu"></span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+			<div class="banner-area">
+				<div class="container">
+					<div class="row justify-content-center generic-height align-items-center">
+						<div class="col-lg-8">
+							<div class="banner-content text-center">
+								<h1 class="text-white text-uppercase mb-10">Charts and Statistics</h1>
+								<p class="text-white">Just your everyday ANNAlysis <br> Pies! Donuts! Bars!</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Start Align Area -->
+			<div class="white-bg">
+				<div class="container">
+					<div class="section-top-border">
+						<h3 class="mb-30">Tally of Free Hours</h3>
+						<div class="row">
+							<div class="col-md-3">
+                                    <div id="chart_div"></div>
+							</div>
+							<div class="col-md-9 mt-sm-20">
+								<p>Each parking meter had a particular number of free parking hours. Each of these hour ranges was added to a counter per day of the week. This was then done for all 6955 meters. The result is a count of the total hours free per day of the week. While the number is arbitary, the percentages reveal which day of the week has the most free parking. The chart expresses that Sunday is the best day for free parking, followed by Saturday, and then all the days of the week are tied.</p>
+							</div>
+						</div>
+					</div>
+					<div class="section-top-border text-right">
+						<h3 class="mb-30">Installation Dates</h3>
+						<div class="row">
+							<div class="col-md-9">
+								<p class="text-right">Each parking meter contained data on the date of installation. Of the meters examined, the majority were installed at the same time. A negligible amount contained no data on that property.</p>
+								<p class="text-right">This analysis revealed that the meters are generally new. Both prominently featured installation dates are from 2017. However, it is probable that installation was gradual (the data likely refers to date of the project starting), as installing thousands of parking meters at the same time is hardly plausible. </p>
+							</div>
+							<div class="col-md-3">
+								<div id="chart_div4"></div>
+							</div>
+						</div>
+					</div>
+					<div class="section-top-border">
+						<h3 class="mb-30">Common Hour Ranges</h3>
+						<div class="row">
+							<div class="col-md-4">
+								<div class="single-defination">
+									<h4 class="mb-20">Common Hour Ranges - Free</h4>
+									<div id='chart_div6'></div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="single-defination">
+									<h4 class="mb-20">Common Hour Ranges - Paid</h4>
+									<div id='chart_div5'></div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="single-defination">
+									<h4 class="mb-20">Common Hour Ranges - How to use</h4>
+									<p>The counts of common hours data reveals the hours mostly likely present on any given meter. Hence, if someone passing by a meter, they can know that there is a high likelihood of free parking if it's before 8am during the week!</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="section-top-border">
+						<h3 class="mb-30">Meters Per Street</h3>
+							<div class= "row">
+								<div id="chart_div2"></div> 
+								<div id='table_div'></div>
+							</div>
+							<br></br>
+							<p>The graph displays the streets with the most parking meters, and the chart enables you to see how many meters are on any of the particular streets from which data was gathered.</p>
+					</div>
+				</div>
+			</div>
+			<!-- End Align Area -->
+			<!-- Start Footer Widget Area -->
+			<section class="footer-widget-area pt-70">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="single-widget">
+								<div class="desc">
+									<h6 class="title">Address</h6>
+									<p>77 Mass Ave, Cambridge, MA <br> 02139, USA</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="single-widget">
+								<div class="desc">
+									<h6 class="title">Email Address</h6>
+									<div class="contact">
+										<a href="mailto:alandler@mit.edu">alandler@mit.edu</a> <br>
+										<a href="mailto:congc@mit.edu">congc@mit.edu</a> <br>
+										<a href="mailto:unguyen2@mit.edu">unguyen2@mit.edu</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="single-widget">
+								<div class="desc">
+									<h6 class="title">Phone Number</h6>
+									<div class="contact">
+										<a href="tel:1545">012 4562 982 3612</a> <br>
+										<a href="tel:54512">012 6321 956 4587</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<footer>
+					<div class="container">
+						<div class="footer-content d-flex justify-content-between align-items-center flex-wrap">
+							<div class="logo">
+								<a href="index.html"><img src="img/BPD.png" alt=""></a>
+							</div>
+							<div class="copy-right-text">Copyright &copy; 2017  |  All rights reserved to <a href="#">Dinomuz inc.</a> Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></div>
+							<div class="footer-social">
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="#"><i class="fa fa-dribbble"></i></a>
+								<a href="#"><i class="fa fa-behance"></i></a>
+							</div>
+						</div>
+					</div>
+				</footer>
+			</section>
+			<!-- End Footer Widget Area -->
+
+
+
+
+		</div>
+
+
+
+
+		<script src="js/vendor/jquery-2.2.4.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+		<script src="js/vendor/bootstrap.min.js"></script>
+		<script src="js/jquery.ajaxchimp.min.js"></script>
+		<script src="js/owl.carousel.min.js"></script>
+		<script src="js/jquery.nice-select.min.js"></script>
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>
