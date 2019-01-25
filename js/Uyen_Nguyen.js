@@ -1,159 +1,126 @@
+// Custom parking icon
+var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+var icons = {
+    parking: {
+        icon: iconBase + 'parking_lot_maps.png'
+    }  
+};
+/** Add a marker to map
+ * @param position given in {lat,lng}. 
+ * @return the plotted marker.Function also pushes marker to markers[]
+ */
+function plotLatLng(position){
+    var marker = new google.maps.Marker({
+        position: position,
+        map: map,
+        icon: icons.parking.icon
+        
+    });
+    markers.push(marker);
+    return marker;
+}
 
-var dataArr = data.features;
-function diffBASE_RATE(){
-    baseRate_list = [];
-    tally_chart = [];
-    for(var i = 0; i< dataArr.length; i++){
-        var base_rate = dataArr[i].properties.BASE_RATE;
-        var isDiff = true;
-        for(var c = 0; c<baseRate_list.length; c++){
-            if(base_rate == baseRate_list[c]){
-                isDiff = false;
-                var index = baseRate_list.indexOf(base_rate);
-                tally_chart[index]++;
-                break;
-            }
-        }
-        if(isDiff){
-            baseRate_list.push(base_rate);
-            tally_chart.push(1);
-        }
+/**Add an array of markers to map
+ * @param array of coordinates, each element given in {lat,lng} format
+ * @return None. If array size >10, will set a cluster.
+ */
+function addMarkers(coorList){
+    for(var i = 0; i < coorList.length; i++){
+        plotLatLng(coorList[i]);
     }
-    console.log(baseRate_list);
-    console.log(tally_chart);
+    setCluster(markers);
+    assignListener();
 }
-function isActive(){
-    var countActive = 0;
-    var countNotActive = 0;
-    
-    for(var i = 0; i< dataArr.length; i++){
-        var status = dataArr[i].properties.METER_STATE;
-        if(status == "ACTIVE"){
-            countActive++;
-        }
-        else{
-            countNotActive++
-        }
-    }
-    var status_list = [countActive, countNotActive];
-    console.log(status_list);
 
-}
-function parking_type(){
-    var singleSpaced = 0;
-    var others = 0;
-    var location_single = []
-    var location_others = [];
-    //Next step: create list of types
-    for(var i = 0; i< dataArr.length; i++){
-        var spaceType = dataArr[i].properties.METER_TYPE;
-        if(spaceType == "SINGLE-SPACE"){
-            singleSpaced++;
-            location_single.push(i);
-        }
-        else{
-            others++;
-            location_others.push(i);
-            
-        }
-    }
-    console.log("Single-spaced parking: " + singleSpaced);
-    console.log("Other space types: " + others);
-    //console.log("Location of single: " + location_single);
-    //console.log("Location of others: " + location_others);
-}
-function has_TowAway(){
-    var unknown = 0;
-    var active = 0 ;
-    location_active = [];
-    for(var i = 0; i< dataArr.length; i++){
-        var status_TowAway = dataArr[i].properties.TOW_AWAY;
-        if(status_TowAway == null){
-            unknown++;
-        }
-        else{
-            active++;
-            location_active.push(i);
-        }
-    }
-    console.log("TowAway is unknown: " + unknown);
-    console.log("TowAway is active: " + active);
-    //console.log("Location of active TowAway: " + location_active);
 
-}
-function diffSTREETS(){
-    var street_names = [];
-    var meter_locations = [];
-    var tally_meter = [];
-    for(var i = 0; i< dataArr.length; i++){
-        var streetName = dataArr[i].properties.STREET;
-        //location of meter
-            var lat = dataArr[i].properties.LATITUDE;
-            var lng = dataArr[i].properties.LONGITUDE;
-        var isDiff = true;
-        for(var c = 0; c<street_names.length; c++){
-            if(streetName == street_names[c]){
-                isDiff = false;
-                var index = street_names.indexOf(streetName);
-                tally_meter[index]++;
-                meter_locations[index].push([lat,lng]);
-                break;
-            }
-        }
-        if(isDiff){ //why not false?
-            street_names.push(streetName);
-            meter_locations.push([[lat,lng]]);
-            tally_meter.push(1);
-        }
+/**
+ * Create a cluster if markers.size > 10
+ * @param an array of markers
+ * @return updated cluster or None
+ */
+function setCluster(markers_list){
+    if(cluster != null){
+        cluster.clearMarkers()
     }
-    //console.log(street_list);
-    //console.log(meter_locations);
-    //console.log(tally_meter);
-    var streets_list = [street_names,meter_locations,tally_meter];
-    /*for(var i = 0; i< street_names.length; i++){
-        var name = street_names[i];
-        var locations = meter_locations[i];
-        var count = tally_meter[i];
-        streets_list.push([name,locations,count]);
-    }*/
+    if(markers_list.length > 10){
+        cluster = new MarkerClusterer(
+        map, markers_list,
+        {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+        });
+        return cluster;
+    }
+    return
+}
 
-    console.log(streets_list);
-    return streets_list;
-}
-function has_SENSOR(){
-    sensorSTATUS_list = [];
-    tally_sensor = [];
-    for(var i = 0; i< dataArr.length; i++){
-        var has_SENSOR = dataArr[i].properties.HAS_SENSOR;
-        var isDiff = true;
-        for(var c = 0; c<sensorSTATUS_list.length; c++){
-            if(has_SENSOR == sensorSTATUS_list[c]){
-                isDiff = false;
-                var index = sensorSTATUS_list.indexOf(has_SENSOR);
-                tally_sensor[index]++;
-                break;
-            }
-        }
-        if(isDiff){ //why not false?
-            sensorSTATUS_list.push(has_SENSOR);
-            tally_sensor.push(1);
-        }
-    }
-    console.log(sensorSTATUS_list);
-    console.log(tally_sensor);
 
+/** Clear all plotted markers except for home location
+ * @param None
+ * @return None
+ */ 
+function resetMap(){
+    clearMap();
+    map.setCenter(center);
+    map.setZoom(defaultZoom);
+    selectedStreet.value = "Choose a street"
+    document.getElementById('selectTime').value = "Start time"
+    document.getElementById('selectDay').value = "Choose day"
 }
-function allCoordinates(){
-    coordinates = [];
-    for(var i = 0 ; i<dataArr.length; i++){
-        lat = dataArr[i].properties.LATITUDE
-        lng = dataArr[i].properties.LONGITUDE
-        if(lat == null || lng == null){
-            console.log(i);
-        }
-        else {
-            coordinates.push({lat,lng})
+/**Clear all plotted markers and plot new markers
+ * @param None
+ * @return None
+ */
+function clearMap(){
+    if(cluster != null){
+        cluster.clearMarkers();
+    }
+    setMapOnAll(null);
+    markers = [];
+}
+function setMapOnAll(option) {
+    for (var i = 0; i < markers.length; i++) {
+      markers[i].setMap(option);
+    }
+}
+
+function assignListener(){
+    for (var i = 0, marker; marker = markers[i]; i++) {
+        google.maps.event.addListener(marker, 'click', function() {
+            var selectedPos = {lat:this.getPosition().lat(),lng:this.getPosition().lng()};
+            //var noPayPolicy = getInfo(selectedPos, 'PARK_NO_PAY');
+            var payPolicy = getInfo(selectedPos, 'PAY_POLICY');
+            var parkingType = getInfo(selectedPos, 'METER_TYPE');
+            var onStreet = getInfo(selectedPos, 'STREET');
+
+            var content = 
+            '<div id="iw-container">' +
+                '<div class="iw-title">' + onStreet + '</div>' +
+                '<div class="iw-subTitle">' + "(" + selectedPos.lat + ", " + selectedPos.lng + ")" + '</div>' +
+                '<div class="iw-content">'  + 
+                    '<p>'+"Space type: " + parkingType + '</p>' +
+                    /*'<p>'+"Free period: " + noPayPolicy +'</p>'+*/
+                    '<p>'+ "Metered period: " + payPolicy +'</p>'+
+                '<div class="iw-bottom-gradient"></div>' +
+            '</div>';
+
+            infowindow.setContent(content);
+            infowindow.setOptions({maxWidth:200}); 
+            infowindow.open(map, this);
+            map.panTo(this.getPosition())
+            //map.setZoom(18)
+        });
+    }
+}
+function getIndexofPos(position){
+    for(var index = 0; index < data_array.length-1; index++){
+        var sameLat = Math.abs(position.lat - data_array[index].properties.LATITUDE) < 0.000001;
+        var sameLng = Math.abs(position.lng - data_array[index].properties.LONGITUDE) < 0.000001;
+        if  (sameLat && sameLng){
+            return index;
         }
     }
-    return coordinates
+}
+
+function getInfo(position,prop){
+    var indexPos = getIndexofPos(position);
+    return data_array[indexPos].properties[prop];
 }

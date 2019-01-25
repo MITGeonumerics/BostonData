@@ -1,0 +1,141 @@
+<html>
+    <head>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <title>Google Maps Demo</title>
+        <style>
+                /* Set the size of the div element that contains the map */
+                #map {
+                  height: 400px;  /* The height is 500 pixels */
+                  width: 100%;  /* The width is the width of the web page */
+                 }
+                /*#map-canvas {
+                    margin: 0;
+                    padding: 0;
+                    height: 400px;
+                    max-width: none;
+                }*/
+                #map-canvas img {
+                    max-width: none !important;
+                } 
+                
+                /* Addtional container on the side to show a picture or street view
+                .gm-style-iw {
+                    width: 350px !important;
+                    top: 15px !important;
+                    left: 0px !important;
+                    background-color: #fff;
+                    box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
+                    border: 1px solid rgba(72, 181, 233, 0.6);
+                    border-radius: 2px 2px 10px 10px;
+                }*/
+                #iw-container {
+                    margin-bottom: 5px;
+                }
+                #iw-container .iw-title {
+                    font-family: 'Open Sans Condensed', sans-serif;
+                    font-size: 12px;
+                    font-weight: 400;
+                    padding: 5px;
+                    background-color: #48b5e9;
+                    color: white;
+                    margin: 0;
+                    border-radius: 0px 0px 0 0;
+                }
+                #iw-container .iw-content {
+                    font-size: 13px;
+                    line-height: 18px;
+                    font-weight: 400;
+                    margin-right: 1px;
+                    padding: 0 0 0 0;
+                    max-height: 150px;
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                }
+                /*.iw-content img {
+                    float: right;
+                    margin: 0 5px 5px 10px;	
+                }*/
+                .iw-subTitle {
+                    font-size: 10px;
+                    font-weight: 700;
+                    padding: 5px 0;
+                    color: navy;
+                }
+                .iw-bottom-gradient {
+                    position: absolute;
+                    width: 326px;
+                    height: 25px;
+                    bottom: 2px;
+                    right: 18px;
+                    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+                    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+                    background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+                    background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+                }
+        </style>
+    </head>
+    <body>
+
+        <!--Add the marker clustering library to your page. -->
+        <script src= "js/markerCluster.js">
+        </script>
+        <!-- Google Maps API Key-->
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRe4yAD1aIqDWkintmN31Cl3v4r684Vpc&callback=initMap">
+        </script>
+        <h3>Google Maps Demo</h3>
+        <div>
+            <select id = "selectStreet" onchange = "displayStreetCoords()">
+                <option>Choose a street</option>
+            </select>
+            <!-- <button onclick = "getCoords()">Click</button> -->
+        </div>
+    
+        <div>
+            <select id = "selectTime" onchange = "displayFreeMeters()">
+                <option>Choose time</option>
+            </select>
+<!--             <select id = "selectTime2">
+                <option>End time</option>
+            </select> -->
+        </div>
+    
+        <div>
+            <select id = "selectDay" onchange = "displayFreeMeters()">
+                <option>Choose day</option>
+            </select>
+        </div>
+
+        <div>
+            <button id ='reset' onclick="resetMap()">
+                Reset Map
+            </button>
+        </div>
+
+        <div id = 'map'></div>
+        <script>
+            // Initialize and add the map
+            var map;
+            var center; 
+            var markers = [];
+            var cluster;    //only set if markers.length > 10
+            var infowindow; 
+            var defaultZoom = 14;
+    
+            function initMap() {
+                // The location of Boston,MA
+                var boston_MA = {lat: 42.3601, lng: -71.0589};
+                center = boston_MA;
+                // The map, centered at boston_MA
+                map = new google.maps.Map(
+                    document.getElementById('map'), {zoom: defaultZoom, center: boston_MA});
+                infowindow = new google.maps.InfoWindow();    
+            }
+        </script>
+        <script src = "Parking_Meters.js"></script>
+        <script src = "js\Uyen_Nguyen.js"></script>
+        <script src = "js\clev.js"></script>
+    </body>
+
+</html>
