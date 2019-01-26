@@ -27,8 +27,63 @@
 		<link rel="stylesheet" href="css/magnific-popup.css">
 		<link rel="stylesheet" href="css/bootstrap.css">
 		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<style>
+                /* Set the size of the div element that contains the map */
+                #map {
+                  height: 400px;  /* The height is 500 pixels */
+                  width: 83%;  /* The width is the width of the web page */
+                 }
+                #map-canvas img {
+                    max-width: none !important;
+                } 
+                
+                #iw-container {
+                    margin-bottom: 5px;
+                }
+                #iw-container .iw-title {
+                    font-family: 'Open Sans Condensed', sans-serif;
+                    font-size: 12px;
+                    font-weight: 400;
+                    padding: 5px;
+                    background-color: #48b5e9;
+                    color: white;
+                    margin: 0;
+                    border-radius: 0px 0px 0 0;
+                }
+                #iw-container .iw-content {
+                    font-size: 13px;
+                    line-height: 18px;
+                    font-weight: 400;
+                    margin-right: 1px;
+                    padding: 0 0 0 0;
+                    max-height: 150px;
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                }
+                .iw-subTitle {
+                    font-size: 10px;
+                    font-weight: 700;
+                    padding: 5px 0;
+                    color: navy;
+                }
+                .iw-bottom-gradient {
+                    position: absolute;
+                    width: 326px;
+                    height: 25px;
+                    bottom: 2px;
+                    right: 18px;
+                    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+                    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+                    background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+                    background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+                }
+		</style>
+
 	</head>
 	<body>
+
 		<div class="main-wrapper-first relative">
 			<header>
 				<div class="container">
@@ -86,49 +141,7 @@
 		<div class="main-wrapper">
 			<div class="working-process-area">
 				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-lg-6">
-							<div class="section-title text-center">
-								<h2>Our Working Process</h2>
-								<p>It won’t be a bigger problem to find one video game lover in your neighbor. Since the introduction of Virtual Game, it has been achieving</p>
-							</div>
-						</div>
-					</div>
-					<div class="total-work-process d-flex flex-wrap justify-content-around align-items-center">
-						<div class="single-work-process">
-							<div class="work-icon-box">
-								<span class="lnr lnr-funnel"></span>
-							</div>
-							<h4 class="caption">1. Researching</h4>
-						</div>
-						<div class="work-arrow">
-							<img src="img/elements/work-arrow.png" alt="">
-						</div>
-						<div class="single-work-process">
-							<div class="work-icon-box">
-								<span class="lnr lnr-layers"></span>
-							</div>
-							<h4 class="caption">2. Wireframing</h4>
-						</div>
-						<div class="work-arrow">
-							<img src="img/elements/work-arrow.png" alt="">
-						</div>
-						<div class="single-work-process">
-							<div class="work-icon-box">
-								<span class="lnr lnr-paw"></span>
-							</div>
-							<h4 class="caption">3. Prototyping</h4>
-						</div>
-						<div class="work-arrow">
-							<img src="img/elements/work-arrow.png" alt="">
-						</div>
-						<div class="single-work-process">
-							<div class="work-icon-box">
-								<span class="lnr lnr-smile"></span>
-							</div>
-							<h4 class="caption">4. Final Design</h4>
-						</div>
-					</div>
+					<div id = 'map'></div>
 				</div>
 			</div>
 		</div>
@@ -293,10 +306,34 @@
 			</section>
 			<!-- End Footer Widget Area -->
 		</div>
-
-
-
-
+		<script>
+				// Initialize and add the map
+				var map;
+				var center; 
+				var markers = [];
+				var cluster;    //only set if markers.length > 10
+				var infowindow; 
+				var defaultZoom = 14;
+		
+				function initMap() {
+					// The location of Boston,MA
+					var boston_MA = {lat: 42.3601, lng: -71.0589};
+					center = boston_MA;
+					// The map, centered at boston_MA
+					// var map_container = document.getElementsByClassName('main-wrapper').getElementsByClassName('working-process-area').getElementsByClassName('container').getElementsByClassName("row justify-content-center").getElementById('map')
+					var map_container = document.getElementById('map');
+					map = new google.maps.Map(
+						map_container,{zoom: defaultZoom, center: boston_MA});
+					infowindow = new google.maps.InfoWindow();    
+				}
+		</script>
+						<!-- Google Maps API Key-->
+						<script async defer
+						src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRe4yAD1aIqDWkintmN31Cl3v4r684Vpc&callback=initMap">
+						</script>
+		<script src = "../Parking_Meters.js"></script>
+		<script src = "../js/Uyen_Nguyen.js"></script>
+		<script src = "../js/clev.js"></script>
 		<script src="js/vendor/jquery-2.2.4.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 		<script src="js/vendor/bootstrap.min.js"></script>
