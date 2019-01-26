@@ -111,7 +111,7 @@
 							<div class="banner-content text-center">
 								<h1 class="text-white text-uppercase mb-10">Map</h1>
 								<!---<div class="single-element-widget mt-30"></div> -->
-									<div class="inline-flex">
+									<!-- <div class="inline-flex">
 										</div><div class="default-select">
 											<select>
 												#function
@@ -130,7 +130,7 @@
 									</div>
 									<div class="button-group-area mt-10">
 										<a href="#" class="genric-btn primary-border">Primary</a>
-									</div>
+									</div> -->
 								<!---</div>-->
 							</div>
 						</div>
@@ -141,6 +141,33 @@
 		<div class="main-wrapper">
 			<div class="working-process-area">s
 				<div class="container">
+					<div class = "default-select">
+			            <select id = "selectStreet" onchange = "displayStreetCoords()">
+			                <option>Choose a street</option>
+			            </select>
+			            <!-- <button onclick = "getCoords()">Click</button> -->
+			        </div>
+			    
+			        <div class = "default-select">
+			            <select id = "selectTime" onchange = "displayFreeMeters()">
+			                <option>Choose time</option>
+			            </select>
+			<!--             <select id = "selectTime2">
+			                <option>End time</option>
+			            </select> -->
+			        </div>
+			    
+			        <div class = "default-select">
+			            <select id = "selectDay" onchange = "displayFreeMeters()">
+			                <option>Choose day</option>
+			            </select>
+			        </div>
+
+			        <div>
+			            <button id ='reset' onclick="resetMap()">
+			                Reset Map
+			            </button>
+			        </div>
 					<div id = 'map'></div>
 				</div>
 			</div>
@@ -298,10 +325,18 @@
 					infowindow = new google.maps.InfoWindow();    
 				}
 		</script>
+<<<<<<< HEAD
 		<!-- Google Maps API Key-->
 		<script async defer
 			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRe4yAD1aIqDWkintmN31Cl3v4r684Vpc&callback=initMap">
 		</script>
+=======
+						<!-- Google Maps API Key-->
+						<script async defer
+						src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRe4yAD1aIqDWkintmN31Cl3v4r684Vpc&callback=initMap">
+						</script>
+		<script src= "../js/markerCluster.js"></script>
+>>>>>>> d45a472d397234288ba04897b6e265f0eac676e5
 		<script src = "../Parking_Meters.js"></script>
 		<script src = "../js/Uyen_Nguyen.js"></script>
 		<script src = "../js/clev.js"></script>
