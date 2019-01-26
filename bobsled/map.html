@@ -141,6 +141,33 @@
 		<div class="main-wrapper">
 			<div class="working-process-area">
 				<div class="container">
+					<div>
+			            <select id = "selectStreet" onchange = "displayStreetCoords()">
+			                <option>Choose a street</option>
+			            </select>
+			            <!-- <button onclick = "getCoords()">Click</button> -->
+			        </div>
+			    
+			        <div>
+			            <select id = "selectTime" onchange = "displayFreeMeters()">
+			                <option>Choose time</option>
+			            </select>
+			<!--             <select id = "selectTime2">
+			                <option>End time</option>
+			            </select> -->
+			        </div>
+			    
+			        <div>
+			            <select id = "selectDay" onchange = "displayFreeMeters()">
+			                <option>Choose day</option>
+			            </select>
+			        </div>
+
+			        <div>
+			            <button id ='reset' onclick="resetMap()">
+			                Reset Map
+			            </button>
+			        </div>
 					<div id = 'map'></div>
 				</div>
 			</div>
