@@ -169,27 +169,30 @@
 							</div>
 						</div>
 					</div>
-					<div class="row align-items left">
-							<div class = "default-select" style = "position:absolute-left; display: inline-block">
+					<div class="row align-items-center" style = "padding: 15px">
+								<!-- <div class = "default-select" style = "position:absolute-center; display: inline-block"> -->
 									<select id = "selectStreet" onchange = "displayStreetCoords()">
 										<option>Choose a street</option>
 									</select>
-									</div class = "default-select" style = "display: inline-block">
-										<select id = "selectTime" onchange = "displayFreeMeters()">
-											<option>Choose time</option>
-										</select>
-									</div>
-									</div class = "default-select"style = "display: inline-block">
-										<select id = "selectDay" onchange = "displayFreeMeters()">
-											<option>Choose day</option>
-										</select>
-									</div>
-									<div>
-										<button id ='reset' onclick="resetMap()">
-											Reset Map
-										</button>
-									</div>
+								<!-- </div> -->
+								<!-- </div class = "default-select" style = "display: inline-block"> -->
+									<select id = "selectTime" onchange = "displayFreeMeters()">
+										<option>Choose time</option>
+									</select>
+								<!-- </div> -->
+								<!-- </div class = "default-select" style = "display: inline-block"> -->
+									<select id = "selectDay" onchange = "displayFreeMeters()">
+										<option>Choose day</option>
+									</select>
+								<!-- </div> -->
 					</div>
+					<div>
+							<button id ='reset' onclick="resetMap()">
+								Reset Map
+							</button>
+					</div>
+					<br></br>
+
 				</div>
 				
 			</div>

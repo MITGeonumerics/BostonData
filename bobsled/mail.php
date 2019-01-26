@@ -1,5 +1,5 @@
 <?php
-    $to = 'spn5@spondonit.com';
+    $to = 'alandler@mit.edu';
     $firstname = $_POST["fname"];
     $email= $_POST["email"];
     $text= $_POST["message"];
