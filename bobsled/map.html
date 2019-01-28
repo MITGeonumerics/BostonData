@@ -36,7 +36,7 @@
 		#map {
 			height: 400px;
 			/* The height is 500 pixels */
-			width: 83%;
+			width: 100%;
 			/* The width is the width of the web page */
 		}
 
@@ -121,44 +121,34 @@
 							<h1 class="text-white text-uppercase mb-10">Map</h1>
 							<p class="text-white">Find when and where parking is available!</p>
 						</div>
+						<div class="row justify-content-center align-items-item" style="padding-bottom:10px">
+							<select id="selectStreet" onchange="displayStreetCoords()" style="width:300px">
+								<option>Choose a street</option>
+							</select>
+		
+							<select id="selectTime" onchange="displayFreeMeters()">
+								<option>Choose time</option>
+							</select>
+		
+							<select id="selectDay" onchange="displayFreeMeters()">
+								<option>Choose day</option>
+							</select>
+						</div>
 					</div>
+					
 				</div>
+				
 			</div>
 		</div>
 	</div>
 
 	<div class="main-wrapper" style="padding-bottom: 10px">
 		<div class="working-process-area" style="padding-top: 10px">
-			<!-- <div align="center" style="padding: 0px 10px 10px"> -->
-			<div class="container border-top-generic">
-				<div class="row justify-content-center">
-					<div class="row align-items-item" style="padding-bottom:20px">
-						<select id="selectStreet" onchange="displayStreetCoords()" style="width:300px">
-							<option>Choose a street</option>
-						</select>
-
-						<select id="selectTime" onchange="displayFreeMeters()">
-							<option>Choose time</option>
-						</select>
-
-						<select id="selectDay" onchange="displayFreeMeters()">
-							<option>Choose day</option>
-						</select>
-					</div>
-					<br></br>
-					<div class="container">
-						<div class="row justify-content-center">
-							<a href="#" class="genric-btn danger circle" id="reset" onclick="resetMap()">Reset Map</a>
-						</div>
-					</div>
-				</div>
-				<br></br>
-				<div class="container">
-					<div class="row justify-content-center">
-						<div id='map'></div>
-					</div>
-				</div>
+			<div align="right" style="padding: 0px 10px 10px">
+				<a href="#" class="genric-btn danger circle" id="reset"" onclick="resetMap()">Reset Map</a>
 			</div>
+			<div id='map' style="padding: 0 20 0 20"></div>
+
 		</div>
 	</div>
 
