@@ -94,61 +94,51 @@
 <body>
 	<div class="main-wrapper-first relative">
 		<header>
-			<div class="container" style="width:100%">
-				<div class="header-wrap">
-					<div class="header-top d-flex justify-content-between align-items-center">
-						<div class="logo">
-							<a href="index.html"><img src="img/BPD.png" alt=""></a>
-						</div>
-						<div class="main-menubar d-flex align-items-center">
-							<nav class="hide">
-								<a href="index.html">Home</a>
-								<a href="map.html">Map</a>
-								<a href="ChartsStats.html">Charts and Statistics</a>
-								<a href="Blogs.html">Team</a>
-							</nav>
-							<div class="menu-bar"><span class="lnr lnr-menu"></span></div>
-						</div>
+			<div class="header-wrap">
+				<div class="header-top d-flex justify-content-between align-items-center">
+					<div class="logo">
+						<a href="index.html"><img src="img/BPD.png" alt=""></a>
+					</div>
+					<div class="main-menubar d-flex align-items-center" style="padding-right:20px">
+						<nav class="hide">
+							<a href="index.html">Home</a>
+							<a href="map.html">Map</a>
+							<a href="ChartsStats.html">Charts and Statistics</a>
+							<a href="Blogs.html">Team</a>
+						</nav>
+						<div class="menu-bar"><span class="lnr lnr-menu"></span></div>
 					</div>
 				</div>
 			</div>
 		</header>
 		<div class="banner-area">
-			<div class="container">
-				<div class="row justify-content-center generic-height align-items-center">
-					<div class="col-lg-8">
-						<div class="banner-content text-center">
-							<h1 class="text-white text-uppercase mb-10">Map</h1>
-							<p class="text-white">Find when and where parking is available!</p>
-						</div>
-						<div class="row justify-content-center align-items-item" style="padding-bottom:10px">
-							<select id="selectStreet" onchange="displayStreetCoords()" style="width:300px">
-								<option>Choose a street</option>
-							</select>
-		
-							<select id="selectTime" onchange="displayFreeMeters()">
-								<option>Choose time</option>
-							</select>
-		
-							<select id="selectDay" onchange="displayFreeMeters()">
-								<option>Choose day</option>
-							</select>
-						</div>
+			<div class="row justify-content-center generic-height align-items-center">
+				<div class="col-lg-8">
+					<div class="banner-content text-center">
+						<h1 class="text-white text-uppercase mb-10">Map</h1>
+						<p class="text-white">Find when and where parking is available!</p>
 					</div>
-					
+					<div class="row justify-content-center align-items-item" style="padding-bottom:10px">
+						<select id="selectStreet" onchange="displayStreetCoords()" style="width: 250px;">
+							<option>Choose a street</option>
+						</select>
+						<select id="selectTime" onchange="displayFreeMeters()">
+							<option>Choose time</option>
+						</select>
+						<select id="selectDay" onchange="displayFreeMeters()">
+							<option>Choose day</option>
+						</select>
+					</div>
 				</div>
-				
 			</div>
 		</div>
 	</div>
-
 	<div class="main-wrapper" style="padding-bottom: 10px">
 		<div class="working-process-area" style="padding-top: 10px">
 			<div align="right" style="padding: 0px 10px 10px">
 				<a href="#" class="genric-btn danger circle" id="reset"" onclick="resetMap()">Reset Map</a>
 			</div>
 			<div id='map' style="padding: 0 20 0 20"></div>
-
 		</div>
 	</div>
 
@@ -156,36 +146,34 @@
 	<div class="main-wrapper">
 		<!-- Start Footer Widget Area -->
 		<section class="footer-widget-area">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4">
-						<div class="single-widget">
-							<div class="desc">
-								<h6 class="title">Address</h6>
-								<p>77 Mass Ave, Cambridge, MA <br> 02139, USA</p>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="single-widget">
+						<div class="desc">
+							<h6 class="title">Address</h6>
+							<p>77 Mass Ave, Cambridge, MA <br> 02139, USA</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="single-widget">
+						<div class="desc">
+							<h6 class="title">Email Address</h6>
+							<div class="contact">
+								<a href="mailto:alandler@mit.edu">alandler@mit.edu</a> <br>
+								<a href="mailto:congc@mit.edu">congc@mit.edu</a> <br>
+								<a href="mailto:unguyen2@mit.edu">unguyen2@mit.edu</a>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4">
-						<div class="single-widget">
-							<div class="desc">
-								<h6 class="title">Email Address</h6>
-								<div class="contact">
-									<a href="mailto:alandler@mit.edu">alandler@mit.edu</a> <br>
-									<a href="mailto:congc@mit.edu">congc@mit.edu</a> <br>
-									<a href="mailto:unguyen2@mit.edu">unguyen2@mit.edu</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="single-widget">
-							<div class="desc">
-								<h6 class="title">Find our Civil and Environmental Department online</h6>
-								<div class="contact">
-										<a href="https://cee.mit.edu/">MIT CEE Homepage</a>
-								</div>
-							</div>
+				</div>
+				<div class="col-md-4">
+					<div class="single-widget">
+						<div class="desc">
+							<div class="contact"><a href="https://cee.mit.edu/">
+								<font size="3">Find our Civil and Environmental Department online</font>
+							</a></div>
+							<img src="../bobsled/CEE_Gray_Horizontal_Logo-01_white.jpg" alt="MIT CEE Logo" style="width:300px;height:80px;">
 						</div>
 					</div>
 				</div>
@@ -193,16 +181,12 @@
 		</section>
 		<section>
 			<footer>
-				<div class="container">
-					<div class="footer-content d-flex justify-content-between align-items-center flex-wrap">
-						<div class="logo">
-							<a href="index.html"><img src="img/BPD.png" alt=""></a>
-						</div>
-
-						<div class="copy-right-text">Copyright &copy; 2019 | All rights reserved to <a href="#">Dinomuz inc.</a> Designed
-							by <a href="https://colorlib.com" target="_blank">Colorlib</a></div>
-
+				<div class="footer-content d-flex justify-content-between align-items-center flex-wrap">
+					<div class="logo">
+						<a href="index.html"><img src="img/BPD.png" alt=""></a>
 					</div>
+					<div class="copy-right-text">Copyright &copy; 2019 | All rights reserved to <a href="#">Dinomuz inc.</a> Designed
+						by <a href="https://colorlib.com" target="_blank">Colorlib</a></div>
 				</div>
 			</footer>
 		</section>
