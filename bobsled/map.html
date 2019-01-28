@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="zxx" class="no-js" >
+<html lang="zxx" class="no-js">
+
 <head>
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,209 +18,234 @@
 	<title>Boston Parking</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,500,600" rel="stylesheet">
-		<!--
+	<!--
 		CSS
 		============================================= -->
-		<link rel="stylesheet" href="css/linearicons.css">
-		<link rel="stylesheet" href="css/owl.carousel.css">
-		<link rel="stylesheet" href="css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/nice-select.css">
-		<link rel="stylesheet" href="css/magnific-popup.css">
-		<link rel="stylesheet" href="css/bootstrap.css">
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/linearicons.css">
+	<link rel="stylesheet" href="css/owl.carousel.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/nice-select.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	 crossorigin="anonymous">
 
-		<style>
-                /* Set the size of the div element that contains the map */
-                #map {
-                  height: 400px;  /* The height is 500 pixels */
-                  width: 83%;  /* The width is the width of the web page */
-                 }
-                #map-canvas img {
-                    max-width: none !important;
-                } 
-                
-                #iw-container {
-                    margin-bottom: 5px;
-                }
-                #iw-container .iw-title {
-                    font-family: 'Open Sans Condensed', sans-serif;
-                    font-size: 12px;
-                    font-weight: 400;
-                    padding: 5px;
-                    background-color: #48b5e9;
-                    color: white;
-                    margin: 0;
-                    border-radius: 0px 0px 0 0;
-                }
-                #iw-container .iw-content {
-                    font-size: 13px;
-                    line-height: 18px;
-                    font-weight: 400;
-                    margin-right: 1px;
-                    padding: 0 0 0 0;
-                    max-height: 150px;
-                    overflow-y: auto;
-                    overflow-x: hidden;
-                }
-                .iw-subTitle {
-                    font-size: 10px;
-                    font-weight: 700;
-                    padding: 5px 0;
-                    color: navy;
-                }
-                .iw-bottom-gradient {
-                    position: absolute;
-                    width: 326px;
-                    height: 25px;
-                    bottom: 2px;
-                    right: 18px;
-                    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
-                    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
-                    background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
-                    background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
-                }
-		</style>
+	<style>
+		/* Set the size of the div element that contains the map */
+		#map {
+			height: 400px;
+			/* The height is 500 pixels */
+			width: 83%;
+			/* The width is the width of the web page */
+		}
 
-	</head>
-	<body>
-		<div class="main-wrapper-first relative">
-			<header>
-				<div class="container">
-					<div class="header-wrap" >
-						<div class="header-top d-flex justify-content-between align-items-center">
-							<div class="logo">
-								<img src="img/BPD.png" alt="">
-							</div>
-							<div class="main-menubar d-flex align-items-center">
-								<nav class="hide">
-									<a href="index.html">Home</a>
-									<a href="map.html">Map</a>
-									<a href="ChartsStats.html">Charts and Statistics</a>
-								</nav>
-								<div class="menu-bar"><span class="lnr lnr-menu"></span></div>
-							</div>
+		#map-canvas img {
+			max-width: none !important;
+		}
+
+		#iw-container {
+			margin-bottom: 5px;
+		}
+
+		#iw-container .iw-title {
+			font-family: 'Open Sans Condensed', sans-serif;
+			font-size: 12px;
+			font-weight: 400;
+			padding: 5px;
+			background-color: #48b5e9;
+			color: white;
+			margin: 0;
+			border-radius: 0px 0px 0 0;
+		}
+
+		#iw-container .iw-content {
+			font-size: 13px;
+			line-height: 18px;
+			font-weight: 400;
+			margin-right: 1px;
+			padding: 0 0 0 0;
+			max-height: 150px;
+			overflow-y: auto;
+			overflow-x: hidden;
+		}
+
+		.iw-subTitle {
+			font-size: 10px;
+			font-weight: 700;
+			padding: 5px 0;
+			color: navy;
+		}
+
+		.iw-bottom-gradient {
+			position: absolute;
+			width: 326px;
+			height: 25px;
+			bottom: 2px;
+			right: 18px;
+			background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+			background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+			background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+			background: -ms-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+		}
+	</style>
+</head>
+
+<body>
+	<div class="main-wrapper-first relative">
+		<header>
+			<div class="container">
+				<div class="header-wrap">
+					<div class="header-top d-flex justify-content-between align-items-center">
+						<div class="logo">
+							<img src="img/BPD.png" alt="">
+						</div>
+						<div class="main-menubar d-flex align-items-center">
+							<nav class="hide">
+								<a href="index.html">Home</a>
+								<a href="map.html">Map</a>
+								<a href="ChartsStats.html">Charts and Statistics</a>
+								<a href="/..Blogs.html">Blogs</a>
+							</nav>
+							<div class="menu-bar"><span class="lnr lnr-menu"></span></div>
 						</div>
 					</div>
 				</div>
-			</header>
-			<div class="banner-area">
-				<div class="container">
-					<div class="row justify-content-center generic-height align-items-center" >
-						<div class="col-lg-8" >
-							<div class="banner-content text-center">
-								<h1 class="text-white text-uppercase mb-10">Map</h1>
-							</div>
+			</div>
+		</header>
+		<div class="banner-area">
+			<div class="container">
+				<div class="row justify-content-center generic-height align-items-center">
+					<div class="col-lg-8">
+						<div class="banner-content text-center">
+							<h1 class="text-white text-uppercase mb-10">Map</h1>
+							<p class="text-white">Find when and where parking is available!</p>
 						</div>
 					</div>
-					<div class="row align-items-item" style="padding-bottom:20px">	
-						<select id = "selectStreet" onchange = "displayStreetCoords()" style="width:300px">
-							<option>Choose a street</option>
-						</select>	
+				</div>
+			</div>
+		</div>
+	</div>
 
-						<select id = "selectTime" onchange = "displayFreeMeters()">
+	<div class="main-wrapper" style="padding-bottom: 10px">
+		<div class="working-process-area" style="padding-top: 10px">
+			<!-- <div align="center" style="padding: 0px 10px 10px"> -->
+			<div class="container border-top-generic">
+				<div class="row justify-content-center">
+					<div class="row align-items-item" style="padding-bottom:20px">
+						<select id="selectStreet" onchange="displayStreetCoords()" style="width:300px">
+							<option>Choose a street</option>
+						</select>
+
+						<select id="selectTime" onchange="displayFreeMeters()">
 							<option>Choose time</option>
 						</select>
-								
-						<select id = "selectDay" onchange = "displayFreeMeters()">
+
+						<select id="selectDay" onchange="displayFreeMeters()">
 							<option>Choose day</option>
-						</select>		
+						</select>
 					</div>
-				</div>
-			</div>
-		</div>
-		<div class="main-wrapper" style="padding-bottom: 10px">
-			<div class="working-process-area" style="padding-top: 10px">
-				<div align="right" style="padding: 0px 10px 10px">
-					<a href="#" class="genric-btn danger circle" id="reset" onclick="resetMap()" >Reset Map</a>
-				</div>
-				<div class="container">
-					<div id = 'map'></div>
-				</div>
-			</div>
-		</div>
-			<!-- About Generic Start -->
-		<div class="main-wrapper">
-			<!-- Start Footer Widget Area -->
-			<section class="footer-widget-area">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="single-widget">
-								<div class="desc">
-									<h6 class="title">Address</h6>
-									<p>77 Mass Ave, Cambridge, MA <br> 02139, USA</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="single-widget">
-								<div class="desc">
-									<h6 class="title">Email Address</h6>
-									<div class="contact">
-										<a href="mailto:alandler@mit.edu">alandler@mit.edu</a> <br>
-										<a href="mailto:congc@mit.edu">congc@mit.edu</a> <br>
-										<a href="mailto:unguyen2@mit.edu">unguyen2@mit.edu</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<section>
-				<footer>
+					<br></br>
 					<div class="container">
-						<div class="footer-content d-flex justify-content-between align-items-center flex-wrap">
-							<div class="logo">
-								<a href="index.html"><img src="img/BPD.png" alt=""></a>
-							</div>
-							<!--
-							<div class="copy-right-text">Copyright &copy; 2019  |  All rights reserved to <a href="#">Dinomuz inc.</a> Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></div>
-							-->
+						<div class="row justify-content-center">
+							<a href="#" class="genric-btn danger circle" id="reset" onclick="resetMap()">Reset Map</a>
 						</div>
 					</div>
-				</footer>
-			</section>
-			<!-- End Footer Widget Area -->
+				</div>
+				<br></br>
+				<div class="container">
+					<div class="row justify-content-center">
+						<div id='map'></div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<script>
-				// Initialize and add the map
-				var map;
-				var center; 
-				var markers = [];
-				var cluster;    //only set if markers.length > 10
-				var infowindow; 
-				var defaultZoom = 14;
-		
-				function initMap() {
-					// The location of Boston,MA
-					var boston_MA = {lat: 42.3601, lng: -71.0589};
-					center = boston_MA;
-					// The map, centered at boston_MA
-					// var map_container = document.getElementsByClassName('main-wrapper').getElementsByClassName('working-process-area').getElementsByClassName('container').getElementsByClassName("row justify-content-center").getElementById('map')
-					var map_container = document.getElementById('map');
-					map = new google.maps.Map(
-						map_container,{zoom: defaultZoom, center: boston_MA});
-					infowindow = new google.maps.InfoWindow();    
-				}
-		</script>
-		<!-- Google Maps API Key-->
-		<script async defer
-			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRe4yAD1aIqDWkintmN31Cl3v4r684Vpc&callback=initMap">
-		</script>
-		<script src= "../js/markerCluster.js"></script>
-		<script src = "../Parking_Meters.js"></script>
-		<script src = "../js/Uyen_Nguyen.js"></script>
-		<script src = "../js/clev.js"></script>
-		<script src="js/vendor/jquery-2.2.4.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-		<script src="js/vendor/bootstrap.min.js"></script>
-		<script src="js/jquery.ajaxchimp.min.js"></script>
-		<script src="js/jquery.sticky.js"></script>
-		<script src="js/owl.carousel.min.js"></script>
-		<script src="js/jquery.nice-select.min.js"></script>
-		<script src="js/jquery.magnific-popup.min.js"></script>
-		<script src="js/main.js"></script>
-	</body>
+	</div>
+
+	<!-- About Generic Start -->
+	<div class="main-wrapper">
+		<!-- Start Footer Widget Area -->
+		<section class="footer-widget-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="single-widget">
+							<div class="desc">
+								<h6 class="title">Address</h6>
+								<p>77 Mass Ave, Cambridge, MA <br> 02139, USA</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="single-widget">
+							<div class="desc">
+								<h6 class="title">Email Address</h6>
+								<div class="contact">
+									<a href="mailto:alandler@mit.edu">alandler@mit.edu</a> <br>
+									<a href="mailto:congc@mit.edu">congc@mit.edu</a> <br>
+									<a href="mailto:unguyen2@mit.edu">unguyen2@mit.edu</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section>
+			<footer>
+				<div class="container">
+					<div class="footer-content d-flex justify-content-between align-items-center flex-wrap">
+						<div class="logo">
+							<a href="index.html"><img src="img/BPD.png" alt=""></a>
+						</div>
+
+						<div class="copy-right-text">Copyright &copy; 2019 | All rights reserved to <a href="#">Dinomuz inc.</a> Designed
+							by <a href="https://colorlib.com" target="_blank">Colorlib</a></div>
+
+					</div>
+				</div>
+			</footer>
+		</section>
+		<!-- End Footer Widget Area -->
+	</div>
+	<script>
+		// Initialize and add the map
+		var map;
+		var center;
+		var markers = [];
+		var cluster;    //only set if markers.length > 10
+		var infowindow;
+		var defaultZoom = 14;
+
+		function initMap() {
+			// The location of Boston,MA
+			var boston_MA = { lat: 42.3601, lng: -71.0589 };
+			center = boston_MA;
+			// The map, centered at boston_MA
+			// var map_container = document.getElementsByClassName('main-wrapper').getElementsByClassName('working-process-area').getElementsByClassName('container').getElementsByClassName("row justify-content-center").getElementById('map')
+			var map_container = document.getElementById('map');
+			map = new google.maps.Map(
+				map_container, { zoom: defaultZoom, center: boston_MA });
+			infowindow = new google.maps.InfoWindow();
+		}
+	</script>
+	<!-- Google Maps API Key-->
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRe4yAD1aIqDWkintmN31Cl3v4r684Vpc&callback=initMap">
+	</script>
+	<script src="../js/markerCluster.js"></script>
+	<script src="../Parking_Meters.js"></script>
+	<script src="../js/Uyen_Nguyen.js"></script>
+	<script src="../js/clev.js"></script>
+	<script src="js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+	 crossorigin="anonymous"></script>
+	<script src="js/vendor/bootstrap.min.js"></script>
+	<script src="js/jquery.ajaxchimp.min.js"></script>
+	<script src="js/jquery.sticky.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.nice-select.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/main.js"></script>
+</body>
+
 </html>
