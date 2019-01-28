@@ -62,7 +62,7 @@ function resetMap(){
     map.setCenter(center);
     map.setZoom(defaultZoom);
     selectedStreet.value = "Choose a street"
-    document.getElementById('selectTime').value = "Start time"
+    document.getElementById('selectTime').value = "Choose time"
     document.getElementById('selectDay').value = "Choose day"
 }
 /**Clear all plotted markers and plot new markers

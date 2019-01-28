@@ -22,7 +22,7 @@ $(document).ready(function(){
         $(".main-menu").addClass('mobile-menu');
     });
      
-    $('select').niceSelect();
+    //$('select').niceSelect();
     $('.img-pop-up').magnificPopup({
         type: 'image',
         gallery:{

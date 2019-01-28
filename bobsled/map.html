@@ -119,13 +119,13 @@
 						<p class="text-white">Find when and where parking is available!</p>
 					</div>
 					<div class="row justify-content-center align-items-item" style="padding-bottom:10px">
-						<select id="selectStreet" onchange="displayStreetCoords()" style="width: 250px;">
+						<select id="selectStreet" onchange="displayStreetCoords()" style="width: 200px;height: 35px;;margin: 20px">
 							<option>Choose a street</option>
 						</select>
-						<select id="selectTime" onchange="displayFreeMeters()">
+						<select id="selectTime" onchange="displayFreeMeters()" style="width: 150px; height: 35px ;margin:20px">
 							<option>Choose time</option>
 						</select>
-						<select id="selectDay" onchange="displayFreeMeters()">
+						<select id="selectDay" onchange="displayFreeMeters()" style="width: 150px; height: 35px ;margin: 20px">
 							<option>Choose day</option>
 						</select>
 					</div>
@@ -199,7 +199,7 @@
 		var markers = [];
 		var cluster;    //only set if markers.length > 10
 		var infowindow;
-		var defaultZoom = 14;
+		var defaultZoom = 13;
 
 		function initMap() {
 			// The location of Boston,MA
