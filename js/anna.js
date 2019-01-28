@@ -771,8 +771,6 @@ function topPayRangePerStreet(x) {
 
 
 
-
-
 //HERE I CAN DO CHARTS I THINK
 
 // Load the Visualization API and the corechart package.
@@ -822,8 +820,8 @@ function drawChart() {
     // Set chart options
     var options = {
         'title': 'Hours of free parking per day of the week',
-        'width': 300,
-        'height': 150,
+        'width': 600,
+        'height': 300,
         pieHole: .4
     };
 
@@ -869,7 +867,9 @@ function drawChart2() {
     var options = {
         'title': 'Meters Per Street',
         'width': 600,
-        'height': 400
+        'height': 400,
+        'colors': ["#1a1aff","#1a1aff","#1a1aff","#1a1aff","#1a1aff"],
+        'legend': { position: "none" },
     };
 
     // Instantiate and draw our chart, passing in some options.
@@ -922,8 +922,8 @@ function drawChart4() {
     // Set chart options
     var options = {
         'title': 'Installations Per Date',
-        'width': 250,
-        'height': 200,
+        'width': 590,
+        'height': 300,
     };
 
     // Instantiate and draw our chart, passing in some options.
@@ -965,7 +965,9 @@ function drawChart5() {
     var options = {
         'title': 'Counts of Common Hour Ranges - Paid Parking',
         'width': 300,
-        'height': 200
+        'height': 200,
+        'legend': { position: "none" },
+        'colors': ["#33ccff","#33ccff","#33ccff","#33ccff","#33ccff"]
     };
 
     // Instantiate and draw our chart, passing in some options.
@@ -1009,7 +1011,9 @@ function drawChart6() {
     var options = {
         'title': 'Counts of Common Hour Ranges - Free Parking',
         'width': 300,
-        'height': 200
+        'height': 200,
+        'legend': { position: "none" },
+        'colors': ["#33ccff","#33ccff","#33ccff","#33ccff","#33ccff"]
     };
 
     // Instantiate and draw our chart, passing in some options.
