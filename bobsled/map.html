@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx" class="no-js">
+<html lang="zxx" class="no-js" >
 <head>
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -83,11 +83,10 @@
 
 	</head>
 	<body>
-		<!--
 		<div class="main-wrapper-first relative">
 			<header>
 				<div class="container">
-					<div class="header-wrap">
+					<div class="header-wrap" >
 						<div class="header-top d-flex justify-content-between align-items-center">
 							<div class="logo">
 								<img src="img/BPD.png" alt="">
@@ -106,100 +105,34 @@
 			</header>
 			<div class="banner-area">
 				<div class="container">
-					<div class="row justify-content-center generic-height align-items-center">
-						<div class="col-lg-8">
-							<div class="banner-content text-center">
-								<h1 class="text-white text-uppercase mb-10">Map</h1>
-								<!---<div class="single-element-widget mt-30"></div> -->
-									<!-- <div class="inline-flex">
-										</div><div class="default-select">
-											<select>
-												#function
-											</select>
-										</div>
-										<div class="default-select">
-											<select>
-												#function
-											</select>
-										</div>
-										<div class="default-select">
-											<select>
-												#function
-											</select>
-										</div>
-									</div>
-									<div class="button-group-area mt-10">
-										<a href="#" class="genric-btn primary-border">Primary</a>
-									</div> 
-									</div>
-								<div></div>
-								
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>-->
-		<div class="main-wrapper-first relative">
-			<header>
-				<div class="container relative">
-					<div class="header-wrap">
-						<div class="header-top d-flex justify-content-between align-items-center">
-							<div class="logo">
-								<img src="img/BPD.png" alt="">
-							</div>
-							<div class="main-menubar d-flex align-items-center">
-								<nav class="hide">
-									<a href="index.html">Home</a>
-									<a href="map.html">Map</a>
-									<a href="ChartsStats.html">Charts and Statistics</a>
-								</nav>
-								<div class="menu-bar"><span class="lnr lnr-menu"></span></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</header>
-			<div class="banner-area">
-				<div class="container">
-					<div class="row justify-content-center generic-height align-items-center">
-						<div class="col-lg-8">
+					<div class="row justify-content-center generic-height align-items-center" >
+						<div class="col-lg-8" >
 							<div class="banner-content text-center">
 								<h1 class="text-white text-uppercase mb-10">Map</h1>
 							</div>
 						</div>
 					</div>
-					<div class="row align-items-center" style = "padding: 15px">
-								<!-- <div class = "default-select" style = "position:absolute-center; display: inline-block"> -->
-									<select id = "selectStreet" onchange = "displayStreetCoords()">
-										<option>Choose a street</option>
-									</select>
-								<!-- </div> -->
-								<!-- </div class = "default-select" style = "display: inline-block"> -->
-									<select id = "selectTime" onchange = "displayFreeMeters()">
-										<option>Choose time</option>
-									</select>
-								<!-- </div> -->
-								<!-- </div class = "default-select" style = "display: inline-block"> -->
-									<select id = "selectDay" onchange = "displayFreeMeters()">
-										<option>Choose day</option>
-									</select>
-								<!-- </div> -->
-					</div>
-					<div>
-							<button id ='reset' onclick="resetMap()">
-								Reset Map
-							</button>
-					</div>
-					<br></br>
+					<div class="row align-items-item" style="padding-bottom:20px">	
+						<select id = "selectStreet" onchange = "displayStreetCoords()" style="width:300px">
+							<option>Choose a street</option>
+						</select>	
 
+						<select id = "selectTime" onchange = "displayFreeMeters()">
+							<option>Choose time</option>
+						</select>
+								
+						<select id = "selectDay" onchange = "displayFreeMeters()">
+							<option>Choose day</option>
+						</select>		
+					</div>
 				</div>
-				
 			</div>
-			
 		</div>
-		<div class="main-wrapper">
-			<div class="working-process-area">
+		<div class="main-wrapper" style="padding-bottom: 10px">
+			<div class="working-process-area" style="padding-top: 10px">
+				<div align="right" style="padding: 0px 10px 10px">
+					<a href="#" class="genric-btn danger circle" id="reset" onclick="resetMap()" >Reset Map</a>
+				</div>
 				<div class="container">
 					<div id = 'map'></div>
 				</div>
@@ -207,80 +140,6 @@
 		</div>
 			<!-- About Generic Start -->
 		<div class="main-wrapper">
-			<!-- Start Story Area -->
-			<section class="story-area">
-				<div class="container">
-					<div class="row align-items-center">
-						<div class="col-lg-1">
-						</div>
-						<div class="col-lg-7">
-							<div class="story-box">
-								<h6 class="text-uppercase">From the part of beginning</h6>
-								<p>Usage of the Internet is becoming more common due to rapid advancement of technology and the power of globalization. Societies are becoming more inter-connected. Thoughts from different</p>
-								<a href="#" class="primary-btn d-inline-flex align-items-center"><span class="mr-10">Get Started</span><span class="lnr lnr-arrow-right"></span></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- End Story Area -->
-			<!-- Start Subscription Area -->
-			<section class="subscription-area">
-				<div class="container">
-					<div class="row align-items-center">
-						<div class="col-lg-6">
-							<div class="section-title">
-								<h3>Subscribe for our Newsletter</h3>
-								<span>Can you imagine what we will be downloading in another</span>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div id="mc_embed_signup">
-								<form target="_blank" novalidate action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&id=92a4423d01" method="get" class="subscription relative">
-									<input type="email" name="EMAIL" placeholder="Your email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your email address'" required>
-									<div style="position: absolute; left: -5000px;">
-										<input type="text" name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="">
-									</div>
-									<button class="primary-btn hover d-inline-flex align-items-center"><span class="mr-10">Get Started</span><span class="lnr lnr-arrow-right"></span></button>
-									<div class="info"></div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- End Subscription Area -->
-			<!-- Start Contact Form -->
-			<section class="contact-form-area">
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-lg-6">
-							<div class="section-title text-center">
-								<h2 class="text-white">Keep in Touch</h2>
-								<p class="text-white">Ask questions! Chat about MIT! Learn about data! Contact us!</p>
-							</div>
-						</div>
-					</div>
-					<form id="myForm" action="mail.php" method="post" class="contact-form">
-						<div class="row">
-							<div class="col-lg-5">
-								<input type="text" name="fname" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="common-input mt-20" required>
-							</div>
-							<div class="col-lg-5">
-								<input type="email" name="email" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="common-input mt-20" required>
-							</div>
-							<div class="col-lg-10">
-								<textarea class="common-textarea mt-20" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required></textarea>
-							</div>
-							<div class="col-lg-10 d-flex justify-content-end">
-								<button class="primary-btn submit-btn d-inline-flex align-items-center mt-20"><span class="mr-10">Send Message</span><span class="lnr lnr-arrow-right"></span></button> <br>
-								<div class="alert-msg"></div>
-							</div>
-						</div>
-					</form>
-				</div>
-			</section>
-			<!-- End Contact Form -->
 			<!-- Start Footer Widget Area -->
 			<section class="footer-widget-area">
 				<div class="container">
@@ -305,26 +164,19 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-4">
-							<div class="single-widget">
-								<div class="desc">
-									<h6 class="title">Phone Number</h6>
-									<div class="contact">
-										<a href="tel:1545">012 4562 982 3612</a> <br>
-										<a href="tel:54512">012 6321 956 4587</a>
-									</div>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
+			</section>
+			<section>
 				<footer>
 					<div class="container">
 						<div class="footer-content d-flex justify-content-between align-items-center flex-wrap">
 							<div class="logo">
 								<a href="index.html"><img src="img/BPD.png" alt=""></a>
 							</div>
-							<div class="copy-right-text">Copyright &copy; 2017  |  All rights reserved to <a href="#">Dinomuz inc.</a> Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></div>
+							<!--
+							<div class="copy-right-text">Copyright &copy; 2019  |  All rights reserved to <a href="#">Dinomuz inc.</a> Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></div>
+							-->
 						</div>
 					</div>
 				</footer>
